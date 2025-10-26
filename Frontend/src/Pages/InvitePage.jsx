@@ -14,7 +14,7 @@ function InvitePage() {
     const checkInvite = async () => {
       try {
         const res = await fetch(
-          `https://tron-bug-tracking.onrender.com/invites/checkinvites/${invitetoken}`,
+          `${import.meta.env.VITE_API_URL}/invites/checkinvites/${invitetoken}`,
           {
             method: "POST",
             credentials: "include",

@@ -23,7 +23,7 @@ function Login() {
     e.preventDefault();
  console.log("Form data :", formData);
  try{
-  const res = await fetch("https://tron-bug-tracking.onrender.com/users/login",{
+  const res = await fetch(`${import.meta.env.VITE_API_URL}/users/login`,{
            method:"POST",
            credentials:"include",
           headers:{

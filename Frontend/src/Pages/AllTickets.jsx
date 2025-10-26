@@ -26,7 +26,7 @@ function AllTickets() {
     // fetching members
     useEffect(() => {
       const fetchMembers = async () => {
-        const res = await fetch("https://tron-bug-tracking.onrender.com/company/getcompany", {
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/company/getcompany`, {
           method: "GET",
           credentials: "include",
         });
@@ -46,7 +46,7 @@ function AllTickets() {
       e.preventDefault();
       console.log("form data :", formData);
   
-      const res = await fetch("https://tron-bug-tracking.onrender.com/projects/updateproject", {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/projects/updateproject`, {
         method: "POST",
         credentials: "include",
         headers: {
@@ -65,7 +65,7 @@ function AllTickets() {
 
   useEffect(()=>{
      try {
-        fetch(`https://tron-bug-tracking.onrender.com/projects/project/getbyid/${projectId}`, {
+        fetch(`${import.meta.env.VITE_API_URL}/projects/project/getbyid/${projectId}`, {
           method: "GET",
           credentials: "include",
         })
@@ -85,7 +85,7 @@ function AllTickets() {
       console.log("com22");
       
       try {
-        fetch(`https://tron-bug-tracking.onrender.com/tickets/gettickets/bypro/${projectId}`, {
+        fetch(`${import.meta.env.VITE_API_URL}/tickets/gettickets/bypro/${projectId}`, {
           method: "GET",
           credentials: "include",
         })
@@ -105,7 +105,7 @@ function AllTickets() {
       try {
         console.log("try");
 
-        fetch(`https://tron-bug-tracking.onrender.com/tickets/gettickets/bycom/${companyId}`, {
+        fetch(`${import.meta.env.VITE_API_URL}/tickets/gettickets/bycom/${companyId}`, {
           method: "GET",
           credentials: "include",
         })

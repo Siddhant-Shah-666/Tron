@@ -11,7 +11,7 @@ function Dashboard() {
 const [tickets, setTickets] = useState([]);
 
     useEffect(()=>{
-        fetch("https://tron-bug-tracking.onrender.com/company/getcompany",{
+        fetch(`${import.meta.env.VITE_API_URL}/company/getcompany`,{
             method:"GET",
             credentials:"include"
 
@@ -36,7 +36,7 @@ const [tickets, setTickets] = useState([]);
          try {
         // console.log("try");
         
-        fetch(`https://tron-bug-tracking.onrender.com/tickets/gettickets/bycom/${companyid}`,{
+        fetch(`${import.meta.env.VITE_API_URL}/tickets/gettickets/bycom/${companyid}`,{
           method: "GET",
           credentials: "include",
         })

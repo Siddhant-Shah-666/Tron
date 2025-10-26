@@ -17,7 +17,7 @@ function Mytasks() {
       try {
         console.log("try");
 
-        fetch(`https://tron-bug-tracking.onrender.com/tickets/gettickets/bycom/${companyId}/?filter=user`, {
+        fetch(`${import.meta.env.VITE_API_URL}/tickets/gettickets/bycom/${companyId}/?filter=user`, {
           method: "GET",
           credentials: "include",
         })

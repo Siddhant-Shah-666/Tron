@@ -30,7 +30,7 @@ function AddCompany() {
 
     console.log("Form data : ", formData);
     try {
-      const res = await fetch("https://tron-bug-tracking.onrender.com/company/createcompany", {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/company/createcompany`, {
           method : "POST",
         credentials:"include",
         // headers:{

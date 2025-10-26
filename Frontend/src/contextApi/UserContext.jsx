@@ -18,7 +18,7 @@ export const UserProvider = ({ children }) => {
 
   const logout = async () => {
     try {
-      const response = await fetch("https://tron-bug-tracking.onrender.com/users/logout", {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/users/logout`, {
         method: "POST",
         credentials:"include",
         headers: {
@@ -50,7 +50,7 @@ useEffect(() => {
         setIsLoading(true); // Start loading state
 
         try {
-            const res = await fetch("https://tron-bug-tracking.onrender.com/users/getuser", {
+            const res = await fetch(`${import.meta.env.VITE_API_URL}/users/getuser`, {
                 method: "GET",
                 credentials: "include",
             });

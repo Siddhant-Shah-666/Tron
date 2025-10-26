@@ -20,7 +20,7 @@ function AddProject() {
   const [company, setCompany] = useState(null);
 
   useEffect(() => {
-    fetch("https://tron-bug-tracking.onrender.com/company/getcompany", {
+    fetch(`${import.meta.env.VITE_API_URL}/company/getcompany`, {
       method: "GET",
       credentials: "include",
     })
@@ -62,7 +62,7 @@ function AddProject() {
     // await FormData()
 
     try {
-      const res = await fetch("https://tron-bug-tracking.onrender.com/projects/createproject", {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/projects/createproject`, {
         method: "POST",
         credentials: "include",
         // headers:{

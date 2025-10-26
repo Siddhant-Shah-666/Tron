@@ -10,7 +10,7 @@ function Projects() {
   const [projects,setProjects] = useState(null)
 
   useEffect(()=>{
-   fetch("https://tron-bug-tracking.onrender.com/projects/getproject",{
+   fetch(`${import.meta.env.VITE_API_URL}/projects/getproject`,{
     method:"GET",
     credentials:"include"
    }).then((res)=>res.json())
