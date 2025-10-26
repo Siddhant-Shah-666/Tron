@@ -83,8 +83,7 @@ const loginUsers = async (req, res) => {
         res.cookie('token', token, {
   httpOnly: true,
   maxAge: 3600000, 
-  secure: true,     
-  sameSite: 'None' 
+  secure: true
 }).status(201).json({user, message: "login success", token, success: true, companyId: user.companyId })
 
       }
