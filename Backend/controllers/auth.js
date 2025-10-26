@@ -44,8 +44,8 @@ const registerUser = async (req, res) => {
     //send res
     res.cookie("token", token, {
   httpOnly: true,
-  secure: true,         
-  sameSite: "None",          
+  secure: process.env.NODE_ENV === "production", // only secure in prod
+  sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",          
 }).status(201).json({ user,message: "user created", token, success: true })
 
 
@@ -86,8 +86,8 @@ const loginUsers = async (req, res) => {
         const token = jwt.sign({ id: user._id }, "secret");
         res.cookie('token', token, {
   httpOnly: true,
-  secure: true,              
-  sameSite: "None",    
+  secure: process.env.NODE_ENV === "production", // only secure in prod
+  sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",   
 }).status(201).json({user, message: "login success", token, success: true, companyId: user.companyId })
 
       }
