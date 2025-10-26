@@ -1,0 +1,57 @@
+router.post("/updateproject", isloggedin, async (req, res) => {
+    const { projectid, manager, status } = req.body;
+
+    if (!projectid) {
+        return res.status(400).json({ error: "project ID is required" });
+    }
+
+    const updateFields = {};
+    if (manager) updateFields.manager = manager;
+    if (status) updateFields.status = status;
+
+    try {
+        const updatedproject = await projectmodel.findByIdAndUpdate(
+            projectid,
+            updateFields,
+            { new: true }
+        );
+
+        if (manager && manager !== null) {
+            await usermodel.findByIdAndUpdate(
+                manager,
+                { $addToSet: { assignedprojects: projectid } },
+                { new: true }
+            );
+        }
+
+        if (status) {
+            updatedproject.history.push({
+                change: `project status updated to ${status}`,
+                changedBy: req.user._id,
+                date: new Date()
+            });
+        }
+
+        if (manager) {
+            updatedproject.history.push({
+                change: `project assigned to user ${manager}`,
+                changedBy: req.user._id,
+                date: new Date()
+            });
+        }
+        await updatedproject.save();
+
+        if (!updatedproject) {
+            return res.status(404).json({ error: "project not found" });
+        }
+
+        res.status(200).json({
+            message: "project updated successfully",
+            project: updatedproject,
+            success: true
+        });
+    } catch (err) {
+        console.error("Update error:", err);
+        res.status(500).json({ error: "Internal server error" });
+    }
+});
