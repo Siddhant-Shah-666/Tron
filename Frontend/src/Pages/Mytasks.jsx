@@ -17,7 +17,7 @@ function Mytasks() {
       try {
         console.log("try");
 
-        fetch(`http://localhost:3000/tickets/gettickets/bycom/${companyId}/?filter=user`, {
+        fetch(`https://tron-bug-tracking.onrender.com/tickets/gettickets/bycom/${companyId}/?filter=user`, {
           method: "GET",
           credentials: "include",
         })

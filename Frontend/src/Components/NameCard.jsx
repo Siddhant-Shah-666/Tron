@@ -25,7 +25,7 @@ function NameCard({ key, member }) {
     e.preventDefault();
     console.log("form data :", formData);
 
-    const res = await fetch("http://localhost:3000/users/updaterole", {
+    const res = await fetch("https://tron-bug-tracking.onrender.com/users/updaterole", {
       method: "POST",
       credentials: "include",
       headers: {
@@ -55,7 +55,7 @@ function NameCard({ key, member }) {
       shadow-lg shadow-cyan-400/30"
           >
             <img
-              src={`http://localhost:3000/uploads/${member?.image}`}
+              src={`https://tron-bug-tracking.onrender.com/uploads/${member?.image}`}
               alt=" Upload Image"
               className="w-full h-full object-cover rounded-xl"
             />

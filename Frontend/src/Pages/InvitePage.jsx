@@ -14,7 +14,7 @@ function InvitePage() {
     const checkInvite = async () => {
       try {
         const res = await fetch(
-          `http://localhost:3000/invites/checkinvites/${invitetoken}`,
+          `https://tron-bug-tracking.onrender.com/invites/checkinvites/${invitetoken}`,
           {
             method: "POST",
             credentials: "include",

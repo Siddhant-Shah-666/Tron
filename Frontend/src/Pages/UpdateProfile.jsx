@@ -12,7 +12,7 @@ function UpdateProfile() {
   });
 
   useEffect(() => {
-    fetch("http://localhost:3000/users/getuser", {
+    fetch("https://tron-bug-tracking.onrender.com/users/getuser", {
       method: "GET",
       credentials: "include",
     })
@@ -40,7 +40,7 @@ function UpdateProfile() {
 
     console.log("Form data : ", formData);
     try {
-      const res = await fetch("http://localhost:3000/users/updateuser", {
+      const res = await fetch("https://tron-bug-tracking.onrender.com/users/updateuser", {
         method: "POST",
         credentials: "include",
         // headers:{

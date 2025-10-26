@@ -13,7 +13,7 @@ function ViewTickets() {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:3000/users/getuser", {
+    fetch("https://tron-bug-tracking.onrender.com/users/getuser", {
       method: "GET",
       credentials: "include",
     })
@@ -32,7 +32,7 @@ useEffect(() => {
     const fetchChatHistory = async () => {
         if (!ticketId) return;
         try {
-            const response = await fetch(`http://localhost:3000/chats/getchats/${ticketId}`);
+            const response = await fetch(`https://tron-bug-tracking.onrender.com/chats/getchats/${ticketId}`);
             if (response.ok) {
                 const history = await response.json();
                 setMessages(history);
@@ -53,7 +53,7 @@ useEffect(() => {
   const [members, setMembers] = useState(null);
 
   useEffect(() => {
-    const newSocket = io("http://localhost:3000");
+    const newSocket = io("https://tron-bug-tracking.onrender.com");
     setSocket(newSocket);
 
     newSocket.emit("joinTicket", ticketId);
@@ -102,7 +102,7 @@ useEffect(() => {
   // fetching members
   useEffect(() => {
     const fetchMembers = async () => {
-      const res = await fetch("http://localhost:3000/company/getcompany", {
+      const res = await fetch("https://tron-bug-tracking.onrender.com/company/getcompany", {
         method: "GET",
         credentials: "include",
       });
@@ -122,7 +122,7 @@ useEffect(() => {
     e.preventDefault();
     console.log("form data :", formData);
 
-    const res = await fetch("http://localhost:3000/tickets/updateticket", {
+    const res = await fetch("https://tron-bug-tracking.onrender.com/tickets/updateticket", {
       method: "POST",
       credentials: "include",
       headers: {
@@ -145,7 +145,7 @@ useEffect(() => {
       try {
         if (ticketId) {
           const res = await fetch(
-            `http://localhost:3000/tickets/gettickets/byid/${ticketId}`,
+            `https://tron-bug-tracking.onrender.com/tickets/gettickets/byid/${ticketId}`,
             {
               method: "GET",
               credentials: "include",

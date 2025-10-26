@@ -30,7 +30,7 @@ function AddCompany() {
 
     console.log("Form data : ", formData);
     try {
-      const res = await fetch("http://localhost:3000/company/createcompany", {
+      const res = await fetch("https://tron-bug-tracking.onrender.com/company/createcompany", {
           method : "POST",
         credentials:"include",
         // headers:{

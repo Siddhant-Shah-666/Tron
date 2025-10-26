@@ -15,7 +15,7 @@ function Profile() {
           <div className="img h-40 w-80  relative flex justify-center items-center rounded-xl">
             <div className="pic  h-40 w-70 bg-blue-300 rounded-xl absolute top-[-3vh]   border bg-slate-950 border-cyan-400 shadow-lg shadow-cyan-400/30">
              <img
-                src={`http://localhost:3000/uploads/${user?.image}`}
+                src={`https://tron-bug-tracking.onrender.com/uploads/${user?.image}`}
                 alt=""
                 className="w-full h-full object-cover rounded-xl"
               />

@@ -17,7 +17,7 @@ export const UserProvider = ({ children }) => {
 
   const logout = async () => {
     try {
-      const response = await fetch("http://localhost:3000/users/logout", {
+      const response = await fetch("https://tron-bug-tracking.onrender.com/users/logout", {
         method: "POST",
         credentials:"include",
         headers: {
@@ -46,7 +46,7 @@ export const UserProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    fetch("http://localhost:3000/users/getuser", {
+    fetch("https://tron-bug-tracking.onrender.com/users/getuser", {
       method: "GET",
       credentials: "include",
     })

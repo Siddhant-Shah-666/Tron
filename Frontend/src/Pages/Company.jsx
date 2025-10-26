@@ -7,7 +7,7 @@ function Company() {
   const [totalTickets, setTotalTickets] = useState(0);
 
   useEffect(() => {
-    fetch("http://localhost:3000/company/getcompany", {
+    fetch("https://tron-bug-tracking.onrender.com/company/getcompany", {
       method: "GET",
       credentials: "include",
     })
@@ -38,7 +38,7 @@ function Company() {
            <div className="pic  h-[25vh] w-[30vw] md:h-[40vh]  md:w-[20vw] bg-red-300 rounded-xl        border bg-slate-950 border-cyan-400 text-cyan-300 
       shadow-lg shadow-cyan-400/30">
               <img
-                src={`http://localhost:3000/uploads/${company?.image}`}
+                src={`https://tron-bug-tracking.onrender.com/uploads/${company?.image}`}
                 alt=""
                 className="w-full h-full object-full rounded-xl"
               />

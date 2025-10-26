@@ -10,7 +10,7 @@ function Projects() {
   const [projects,setProjects] = useState(null)
 
   useEffect(()=>{
-   fetch("http://localhost:3000/projects/getproject",{
+   fetch("https://tron-bug-tracking.onrender.com/projects/getproject",{
     method:"GET",
     credentials:"include"
    }).then((res)=>res.json())

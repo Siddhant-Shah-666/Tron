@@ -20,7 +20,7 @@ function Invite() {
     e.preventDefault();
     console.log("Form data : ", formData);
 
-    const res = await fetch("http://localhost:3000/invites/inviteuser", {
+    const res = await fetch("https://tron-bug-tracking.onrender.com/invites/inviteuser", {
       method: "POST",
       credentials:"include",
       headers: {

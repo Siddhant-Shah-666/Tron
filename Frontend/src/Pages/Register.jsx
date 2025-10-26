@@ -23,7 +23,7 @@ function Register() {
     console.log("form submitted : ", formData);
 
     try {
-      const res = await fetch("http://localhost:3000/users/register", {
+      const res = await fetch("https://tron-bug-tracking.onrender.com/users/register", {
         method : "POST",
         credentials:"include",
         headers:{

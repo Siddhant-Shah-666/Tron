@@ -16,7 +16,7 @@ function AddTicket() {
   const [projects, setProjects] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:3000/projects/getproject", {
+    fetch("https://tron-bug-tracking.onrender.com/projects/getproject", {
       method: "GET",
       credentials: "include",
     })
@@ -37,7 +37,7 @@ function AddTicket() {
     e.preventDefault();
     console.log("form data :", formData);
 
-    const res = await fetch("http://localhost:3000/tickets/createticket", {
+    const res = await fetch("https://tron-bug-tracking.onrender.com/tickets/createticket", {
       method: "POST",
       credentials: "include",
       headers: {
