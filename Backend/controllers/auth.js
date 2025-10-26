@@ -45,8 +45,8 @@ const registerUser = async (req, res) => {
     //send res
     res.cookie("token", token, {
   httpOnly: true,
-  secure: !!process.env.PORT,
-    sameSite: false,
+  secure: true,
+  sameSite: "None",
 }).status(201).json({ message: "user created", token, success: true })
 
 
@@ -87,8 +87,8 @@ const loginUsers = async (req, res) => {
         const token = jwt.sign({ id: user._id }, "secret");
        res.cookie("token", token, {
   httpOnly: true,
-  secure: !!process.env.PORT, 
-    sameSite: false,
+  secure: true,
+  sameSite: "None",
 }).status(201).json({ message: "login success", token, success: true, companyId: user.companyId })
 
       }
