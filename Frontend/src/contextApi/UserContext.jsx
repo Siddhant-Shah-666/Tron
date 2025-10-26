@@ -44,22 +44,36 @@ export const UserProvider = ({ children }) => {
       navigate("/");
     }
   };
+// UserContext.jsx useEffect FIX
 
-  useEffect(() => {
-    fetch("https://tron-bug-tracking.onrender.com/users/getuser", {
+useEffect(() => {
+  const fetchUser = async () => {
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/users/getuser`, {
       method: "GET",
       credentials: "include",
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        // console.log(data.user?.assignedTickets?.length);
+    });
 
-        setUser(data?.user);
-        if (data?.user?.role === "Admin") {
-          setIsAdmin(true);
-        }
-      });
-  }, [isloggedIn]);
+    if (res.status === 304) {
+      return; 
+    }
+
+    if (!res.ok) {
+        // Handle 401 Unauthorized, 403 Forbidden, etc.
+        setUser(null);
+        setIsLoggedIn(false);
+        return;
+    }
+    
+    // Only parse JSON if the status is 200 OK
+    const data = await res.json(); 
+
+    setUser(data?.user);
+    if (data?.user?.role === "Admin") {
+      setIsAdmin(true);
+    }
+  };
+  fetchUser();
+}, [isloggedIn]);
 
   const login = () => {
     console.log("login triggerded");
