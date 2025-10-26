@@ -48,7 +48,7 @@ export const UserProvider = ({ children }) => {
 
 useEffect(() => {
   const fetchUser = async () => {
-    const res = await fetch(`${import.meta.env.VITE_API_URL}/users/getuser`, {
+    const res = await fetch(`https://tron-bug-tracking.onrender.com/users/getuser`, {
       method: "GET",
       credentials: "include",
     });
