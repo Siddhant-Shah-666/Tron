@@ -1,7 +1,7 @@
 import {React, useState,useEffect} from 'react'
 import ProjectTable from '../Components/ProjectTable'
 import StatsCard from '../Components/Dashboard/StatsCard'
-import ProjectCard from '../Components/projectCard'
+import ProjectCard from '../Components/ProjectCard'
 
 function Projects() {
 
