@@ -4,6 +4,7 @@ dotenv.config();
  
 const express = require('express');
 const app = express();
+app.set('trust proxy', 1);
 
 const http = require("http");
 const { Server } = require("socket.io");
