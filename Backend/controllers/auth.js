@@ -42,7 +42,7 @@ const registerUser = async (req, res) => {
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
 
     //send res
-    res.cookie("token", token).status(201).json({ message: "user created", token, success: true })
+    res.cookie("token", token).status(201).json({ user,message: "user created", token, success: true })
 
 
   } catch (err) {
@@ -80,7 +80,7 @@ const loginUsers = async (req, res) => {
       }
       else {
         const token = jwt.sign({ id: user._id }, "secret");
-        res.cookie('token', token).status(201).json({ message: "login success", token, success: true, companyId: user.companyId })
+        res.cookie('token', token).status(201).json({user, message: "login success", token, success: true, companyId: user.companyId })
 
       }
 

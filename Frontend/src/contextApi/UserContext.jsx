@@ -54,8 +54,8 @@ export const UserProvider = ({ children }) => {
       .then((data) => {
         // console.log(data.user?.assignedTickets?.length);
 
-        setUser(data.user);
-        if (data.user.role === "Admin") {
+        setUser(data?.user);
+        if (data?.user?.role === "Admin") {
           setIsAdmin(true);
         }
       });
