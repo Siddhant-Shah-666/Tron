@@ -23,7 +23,7 @@ export const UserProvider = ({ children }) => {
         headers: {
           "Content-Type": "application/json",
         },
-        credentials: "include",
+      
         body: JSON.stringify({}),
       });
 
