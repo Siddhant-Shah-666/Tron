@@ -9,6 +9,7 @@ const {  validationResult } = require('express-validator');
 
 
 const registerUser = async (req, res) => {
+  const isProduction = process.env.PORT;
   const errors = validationResult(req);
 
   if (!errors.isEmpty()) {
@@ -44,8 +45,8 @@ const registerUser = async (req, res) => {
     //send res
     res.cookie("token", token, {
   httpOnly: true,
-  secure: process.env.NODE_ENV === "production", 
-  sameSite: process.env.NODE_ENV === "production" ? "None" : "lax",
+  secure: isProduction, 
+  sameSite: isProduction ? false : "Lax",
 }).status(201).json({ user,message: "user created", token, success: true })
 
 
