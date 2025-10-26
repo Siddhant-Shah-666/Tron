@@ -5,11 +5,11 @@ const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
 const userModel = require('../models/userModel');
 const {  validationResult } = require('express-validator');
-
+const isProduction = process.env.PORT;
 
 
 const registerUser = async (req, res) => {
-  const isProduction = process.env.PORT;
+  
   const errors = validationResult(req);
 
   if (!errors.isEmpty()) {
