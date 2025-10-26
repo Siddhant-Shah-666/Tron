@@ -80,8 +80,8 @@ useEffect(() => {
     const messageData = {
       ticketId: ticketId,
      userId: {
-            _id: user._id,
-            name: user.name // Include the name here!
+            _id: user?._id,
+            name: user?.name // Include the name here!
         },
       message: input,
     };

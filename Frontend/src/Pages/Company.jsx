@@ -62,7 +62,7 @@ function Company() {
         {/* employee list */}
         <div className="employees w-[100vw] md:w-[80vw] bg-red-0  grid grid-cols-1 md:grid-cols-2 place-items-center gap-3 md:gap-5  gap-y-2 md:gap-y-5 md:px-5 ">
           {company?.members?.map((member) => {
-            return <NameCard key={member._id} member={member} />;
+            return <NameCard key={member?._id} member={member} />;
           })}
         </div>
       </div>

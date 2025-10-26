@@ -18,10 +18,10 @@ const [tickets, setTickets] = useState([]);
         })
         .then((res)=> res.json())
         .then((data)=>{
-            console.log("commm",data.company._id);
+            // console.log("commm",data.company._id);
             setCompany(data.company)
             
-            setCompanyid(data.company._id)
+            setCompanyid(data?.company?._id)
         }).catch((err)=>{
           
             console.error(err);

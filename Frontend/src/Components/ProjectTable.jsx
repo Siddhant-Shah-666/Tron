@@ -19,19 +19,19 @@ function ProjectTable({projects,company}) {
     </thead>
     <tbody>
       {projects && projects.map((project)=>{
-        return(   <tr key={project._id} className=' h-[7vh]  mb-3  border bg-slate-950/40 backdrop-blur-md  border-cyan-400 text-cyan-300 
+        return(   <tr key={project?._id} className=' h-[7vh]  mb-3  border bg-slate-950/40 backdrop-blur-md  border-cyan-400 text-cyan-300 
       shadow-lg shadow-cyan-400/30 font-bold'>
-      <td  className=' max-w-[25vw] rounded-l-xl overflow-hidden whitespace-nowrap truncate p-1 text-center ' >{project.name}</td>
+      <td  className=' max-w-[25vw] rounded-l-xl overflow-hidden whitespace-nowrap truncate p-1 text-center ' >{project?.name}</td>
       <td className=' max-w-[15vw]  overflow-hidden whitespace-nowrap truncate p-1 text-center' > {project?.manager?.name}</td>
       <td className='text-center'>
-         <span className='h-[5vh]  px-2 p-1 rounded-md  border text-white  border-white shadow-md shadow-white/30'>{project.priority}</span> 
+         <span className='h-[5vh]  px-2 p-1 rounded-md  border text-white  border-white shadow-md shadow-white/30'>{project?.priority}</span> 
       </td>
       <td className='text-center'>
-         <span className='h-[5vh]  px-2 p-1  rounded-md  border text-white  border-white shadow-md shadow-white/30'>{project.status}</span> 
+         <span className='h-[5vh]  px-2 p-1  rounded-md  border text-white  border-white shadow-md shadow-white/30'>{project?.status}</span> 
       </td>
-      <td className=' max-w-[15vw] overflow-hidden whitespace-nowrap truncate p-1 text-center'>{new Date(project.createdAt).toLocaleDateString("en-IN")}</td>
+      <td className=' max-w-[15vw] overflow-hidden whitespace-nowrap truncate p-1 text-center'>{new Date(project?.createdAt).toLocaleDateString("en-IN")}</td>
       <td  className=' rounded-r-xl text-center'>
-        <Link to={`/alltickets/${company}/${project._id}`}>
+        <Link to={`/alltickets/${company}/${project?._id}`}>
           <button className='h-[5vh] w-[8vw]  rounded-xl  text-white rounded hover:bg-cyan-500 border bg-cyan-800  border-cyan-400 shadow-lg shadow-cyan-400/30'>View</button>
           </Link>
         </td>

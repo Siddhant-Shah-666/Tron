@@ -16,7 +16,7 @@ function Projects() {
    }).then((res)=>res.json())
    .then((data)=>{
     if(data.company){
-      setcompany(data.company._id)
+      setcompany(data?.company?._id)
       
       setProjects(data.company?.projects)
       
