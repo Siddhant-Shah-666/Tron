@@ -105,25 +105,32 @@ const loginUsers = async (req, res) => {
 
 
 const isloggedin = async (req, res, next) => {
-  try {
-    const token = req.cookies.token;
-    // console.log(token);
+    try {
+        const token = req.cookies.token;
 
-    if (!token) {
-      return res.status(200).json({ message: "Not Authorize, login first" })
+        if (!token) {
+            // Send 401 status when no token is present
+            return res.status(401).json({ message: "Not Authorized, please log in." });
+        }
+        
+        // If token is present, verify it
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        req.user = await userModel.findById(decoded.id);
+        
+        // Proceed if valid
+        next();
+
+    } catch (err) {
+        // This handles jwt.verify errors (like expired or invalid token)
+        console.error("Token verification failed:", err.message); 
+        
+        // Clear the bad token and send 401 status
+        res.clearCookie("token");
+        return res.status(401).json({ message: "Session expired or token invalid." });
     }
-    else {
-      const decoded = jwt.verify(token, process.env.JWT_SECRET);
-      req.user = await userModel.findById(decoded.id);
-      next()
-    }
-
-  } catch (err) {
-    console.log(err);
-
-  }
-
 }
+
+
 
 const logout = async (req, res) => {
   console.log("logout");
