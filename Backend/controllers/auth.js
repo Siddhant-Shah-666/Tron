@@ -80,7 +80,12 @@ const loginUsers = async (req, res) => {
       }
       else {
         const token = jwt.sign({ id: user._id }, "secret");
-        res.cookie('token', token).status(201).json({user, message: "login success", token, success: true, companyId: user.companyId })
+        res.cookie('token', token, {
+  httpOnly: true,
+  maxAge: 3600000, 
+  secure: true,     
+  sameSite: 'None' 
+}).status(201).json({user, message: "login success", token, success: true, companyId: user.companyId })
 
       }
 
