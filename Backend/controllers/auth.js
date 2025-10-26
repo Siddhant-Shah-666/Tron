@@ -47,7 +47,7 @@ const registerUser = async (req, res) => {
   httpOnly: true,
   secure: isProduction, 
   sameSite: isProduction ? false : "Lax",
-}).status(201).json({ user,message: "user created", token, success: true })
+}).status(201).json({ message: "user created", token, success: true })
 
 
   } catch (err) {
@@ -89,7 +89,7 @@ const loginUsers = async (req, res) => {
   httpOnly: true,
   secure: isProduction, 
   sameSite: isProduction ? false : "Lax",
-}).status(201).json({user, message: "login success", token, success: true, companyId: user.companyId })
+}).status(201).json({ message: "login success", token, success: true, companyId: user.companyId })
 
       }
 

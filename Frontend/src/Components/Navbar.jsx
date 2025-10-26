@@ -36,30 +36,31 @@ function Navbar({ visible, closeNavbar }) {
       >
         TRON
       </motion.h1>
-      
+      {companyid && (
       <ul className="text-[5vw] md:text-[1.8vw] font-bold flex flex-col justify-center items-start gap-y-4 ">
         <li>
           {/* 3. Add classes for styling, hover, and conditional active state */}
           <Link to="/dashboard" onClick={closeNavbar} className={`${linkStyles} ${location.pathname === '/dashboard' ? 'bg-cyan-400 text-slate-900 border-cyan-400 text-cyan-300 shadow-lg shadow-cyan-400/30' : 'hover:bg-cyan-400/50'}`}>Dashboard</Link>
         </li>
-        {companyid && (
+        
           <li>
             <Link to={`/mytasks/${companyid}`} onClick={closeNavbar} className={`${linkStyles} ${location.pathname === `/mytasks/${companyid}` ? 'bg-cyan-400 text-slate-900 border-cyan-400 text-cyan-300 shadow-lg shadow-cyan-400/30' : 'hover:bg-cyan-400/50'}`}>My Tasks</Link>
           </li>
-        )}
+        
         <li>
           <Link to="/projects" onClick={closeNavbar} className={`${linkStyles} ${location.pathname === '/projects' ? 'bg-cyan-400 text-slate-900 border-cyan-400 text-cyan-300 shadow-lg shadow-cyan-400/30' : 'hover:bg-cyan-400/50'}`}>Projects</Link>
         </li>
 
-        {companyid && (
+        
           <li>
             <Link to={`/alltickets/${companyid}`} onClick={closeNavbar} className={`${linkStyles} ${location.pathname === `/alltickets/${companyid}` ? 'bg-cyan-400 text-slate-900 border-cyan-400 text-cyan-300 shadow-lg shadow-cyan-400/30' : 'hover:bg-cyan-400/50'}`}>Tickets</Link>
           </li>
-        )}
+      
         <li>
           <Link to="/company" onClick={closeNavbar} className={`${linkStyles} ${location.pathname === '/company' ? 'bg-cyan-400 text-slate-900 border-cyan-400 text-cyan-300 shadow-lg shadow-cyan-400/30' : 'hover:bg-cyan-400/50'}`}>Company</Link>
         </li>
       </ul>
+      )}
     </div>
   );
 }

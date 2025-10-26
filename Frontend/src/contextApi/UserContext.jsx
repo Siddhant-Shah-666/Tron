@@ -13,6 +13,7 @@ export const UserProvider = ({ children }) => {
   const [isloggedIn, setIsLoggedIn] = useState(null);
   const [user, setUser] = useState(null);
   const [isAdmin, setIsAdmin] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
 
   const logout = async () => {
@@ -44,35 +45,52 @@ export const UserProvider = ({ children }) => {
       navigate("/");
     }
   };
-// UserContext.jsx useEffect FIX
-
 useEffect(() => {
-  const fetchUser = async () => {
-    const res = await fetch(`https://tron-bug-tracking.onrender.com/users/getuser`, {
-      method: "GET",
-      credentials: "include",
-    });
+    const checkAuth = async () => {
+        setIsLoading(true); // Start loading state
 
-    if (res.status === 304) {
-      return; 
-    }
+        try {
+            const res = await fetch("https://tron-bug-tracking.onrender.com/users/getuser", {
+                method: "GET",
+                credentials: "include",
+            });
 
-    if (!res.ok) {
-        // Handle 401 Unauthorized, 403 Forbidden, etc.
-        setUser(null);
-        setIsLoggedIn(false);
-        return;
-    }
-    
-    // Only parse JSON if the status is 200 OK
-    const data = await res.json(); 
+            // If status is 401 (Unauthorized) or 403, user is not logged in.
+            if (!res.ok && res.status >= 400) {
+                // Clear any existing state and stop loading
+                setUser(null);
+                setIsLoggedIn(false);
+            } else {
+                // Status is 200 (OK) or 304 (Not Modified). Proceed.
+                // NOTE: We only parse JSON if the body isn't empty (i.e., not a 304)
+                const data = (res.status !== 304 && res.status !== 204) ? await res.json() : {};
 
-    setUser(data?.user);
-    if (data?.user?.role === "Admin") {
-      setIsAdmin(true);
-    }
-  };
-  fetchUser();
+                // Use the data if available, otherwise assume current token is valid
+                const userData = data?.user || user; 
+
+                if (userData) {
+                    setUser(userData);
+                    setIsLoggedIn(true);
+                    if (userData?.role === "Admin") {
+                        setIsAdmin(true);
+                    }
+                } else {
+                    // Token exists but server sent no user data (e.g., expired token)
+                    setUser(null);
+                    setIsLoggedIn(false);
+                }
+            }
+        } catch (err) {
+            // Handle network errors or JSON parsing errors
+            console.error("Auth check failed:", err);
+            setUser(null);
+            setIsLoggedIn(false);
+        } finally {
+            setIsLoading(false); // Stop loading regardless of the outcome
+        }
+    };
+    checkAuth();
+
 }, [isloggedIn]);
 
   const login = () => {
