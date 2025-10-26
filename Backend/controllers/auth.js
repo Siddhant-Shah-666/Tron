@@ -42,11 +42,7 @@ const registerUser = async (req, res) => {
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
 
     //send res
-    res.cookie("token", token, {
-  httpOnly: true,
-  secure: process.env.NODE_ENV === "production", // only secure in prod
-  sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",          
-}).status(201).json({ user,message: "user created", token, success: true })
+    res.cookie("token", token).status(201).json({ user,message: "user created", token, success: true })
 
 
   } catch (err) {
@@ -84,11 +80,7 @@ const loginUsers = async (req, res) => {
       }
       else {
         const token = jwt.sign({ id: user._id }, "secret");
-        res.cookie('token', token, {
-  httpOnly: true,
-  secure: process.env.NODE_ENV === "production", // only secure in prod
-  sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",   
-}).status(201).json({user, message: "login success", token, success: true, companyId: user.companyId })
+        res.cookie('token', token).status(201).json({user, message: "login success", token, success: true, companyId: user.companyId })
 
       }
 
