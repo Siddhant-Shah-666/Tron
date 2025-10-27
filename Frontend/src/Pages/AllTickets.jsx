@@ -128,7 +128,7 @@ function AllTickets() {
       <div className="w-full   md:w-[80vw] bg-blue-00 flex flex-col  justify-start md:items-center text-white">
 
         {projectId && (
-          <div className="w-[70vw] md:w-[75vw]  flex flex-col justify-center items-start rounded font-bold p-3 gap-2 border bg-slate-950 border-cyan-400 shadow-lg shadow-cyan-400/30 text-cyan-400 ">
+          <div className="w-[100vw] md:w-[75vw]  flex flex-col justify-center items-start rounded font-bold p-3 gap-2 border bg-slate-950 border-cyan-400 shadow-lg shadow-cyan-400/30 text-cyan-400 ">
             <p className="text-xl">Project : {project?.name}</p>
             {/* <p className="text-2xl font-semibold">
               Ticket : {ticketDetai?.name}
