@@ -21,7 +21,7 @@ function ProjectCard({ projects ,companyId}) {
               <span className='h-2  px-1 md:px-2 py-[.2vw] ml-2 rounded-md  text-red-400 rounded  border  border-red-400 shadow-lg shadow-red-400/30'>{project?.status}</span>
             </h3>
           </div>
-         <Link to={`/allprojects/${companyId}/${project?._id}`}>
+         <Link to={`/alltickets/${companyId}/${project?._id}`}>
           <button className='h-[4vh] w-[80vw] md:h-[5vh] md:w-[8vw]  rounded-xl   text-white rounded hover:bg-cyan-500 border bg-cyan-800  border-cyan-400 shadow-lg shadow-cyan-400/30 '>View</button>
           </Link>
         </div>

@@ -166,10 +166,10 @@ useEffect(() => {
 
   return (
     <>
-      <div className="w-[80vw]  flex flex-col justify-center items-center text-white p-5 gap-5 ">
+      <div className="w-[100vw] md:w-[80vw]  flex flex-col justify-center items-center text-white p-5 gap-5 ">
         {/* ticketDetails */}
         {ticketDetails && (
-          <div className=" w-[70vw]  flex flex-col justify-center items-start rounded font-bold p-3 gap-2 border bg-slate-950 border-cyan-400 shadow-lg shadow-cyan-400/30 text-cyan-400 ">
+          <div className=" w-[100vw] md:w-[70vw]  flex flex-col justify-center items-start rounded font-bold p-3 gap-2 border bg-slate-950 border-cyan-400 shadow-lg shadow-cyan-400/30 text-cyan-400 ">
             <p className="text-xl">Project : {ticketDetails?.project?.name}</p>
             <p className="text-2xl font-semibold">
               Ticket : {ticketDetails?.name}
@@ -229,14 +229,14 @@ useEffect(() => {
         )}
 
         {/* chatBox */}
-        <div className="w-[70vw] h-[50vh]  flex flex-col items-start rounded p-3 gap-2 overflow-y-auto border bg-slate-950 border-cyan-400 shadow-lg shadow-cyan-400/30">
+        <div className="w-[100vw] md:w-[70vw] h-[50vh]  flex flex-col items-start rounded p-3 gap-2 overflow-y-auto border bg-slate-950 border-cyan-400 shadow-lg shadow-cyan-400/30">
           {messages.map((msg, index) => (
             <ChatCard key={index} message={msg} currentUser={user}  />
           ))}
         </div>
 
         {/* Input Form */}
-        <div className="w-[70vw] h-[10vh]  flex justify-center rounded items-center border bg-slate-950 border-cyan-400 shadow-lg shadow-cyan-400/30">
+        <div className="w-[100vw] md:w-[70vw] h-[10vh]  flex justify-center rounded items-center border bg-slate-950 border-cyan-400 shadow-lg shadow-cyan-400/30">
           <form
             onSubmit={handleSendMessage}
             className="w-full flex justify-center items-center gap-3 text-cyan-300"
@@ -258,10 +258,10 @@ useEffect(() => {
           </form>
         </div>
         {/* ticket history box */}
-        <div className="w-[70vw] flex flex-col justify-center items-start font-bold gap-3 p-5 border rounded-lg bg-slate-950 border-cyan-400 shadow-lg shadow-cyan-400/30">
+        <div className="w-[100vw] md:w-[70vw] flex flex-col justify-center items-start font-bold gap-3 p-5 border rounded-lg bg-slate-950 border-cyan-400 shadow-lg shadow-cyan-400/30">
           <h3 className="text-xl font-bold">Ticket History</h3>
           {ticketDetails?.history?.map((entry, index) => (
-            <div key={index} className="w-[65vw]  text-cyan-300 p-2 border rounded-lg bg-slate-950 border-cyan-400 shadow-lg shadow-cyan-400/30">
+            <div key={index} className="w-[100vw] md:w-[65vw]  text-cyan-300 p-2 border rounded-lg bg-slate-950 border-cyan-400 shadow-lg shadow-cyan-400/30">
               <p>
                 {entry.change} by {entry.changedBy?.name} at{" "}
                 {new Date(entry.date).toLocaleDateString("en-IN", {
