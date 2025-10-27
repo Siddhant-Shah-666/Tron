@@ -9,6 +9,7 @@ const { isloggedin } = require("../controllers/auth");
 // const usermodel = require("../models/userModel");
 const nodemailer = require("nodemailer");
 
+import axios from "axios";
 
 router.post("/inviteuser", isloggedin, async (req, res) => {
   const { name, email, message, role } = req.body;
@@ -29,44 +30,41 @@ router.post("/inviteuser", isloggedin, async (req, res) => {
 
     const inviteLink = `${process.env.FRONTEND_URL}/invitepage/${token}`;
 
-    // Setup Nodemailer transporter
-    const transporter = nodemailer.createTransport({
-    host: "smtp-relay.brevo.com", 
-  port: 587,                   
-  secure: false, 
-      auth: {
-        user: process.env.BREVO_USER,
-        pass: process.env.BREVO_PASS,
-      },
-      connectionTimeout: 30000, 
-    greetingTimeout: 15000,
-    });
-
-    //email compose
-    const mailOptions = {
-      from: `"${user.name}" <${user.email}>`,
-      to: email,
-      subject: "You're Invited!",
-      html: `
-        <h2>Hello ${name},</h2>
-        <p>${message}</p>
-        <p><strong>Role:</strong> ${role}</p>
-        <p>Click the link below to accept the invitation:</p>
-        <a href="${inviteLink}">${inviteLink}</a>
-        <br/><br/>
-        <p>Best regards,<br/>${user.name}</p>
-      `,
-    };
-
-    await transporter.sendMail(mailOptions);
+    // // Send email via Brevo API
+    // await axios.post(
+    //   "https://api.brevo.com/v3/smtp/email",
+    //   {
+    //     sender: {
+    //       name: user.name,
+    //       email: process.env.BREVO_USER, // must be a verified Brevo sender
+    //     },
+    //     to: [{ email }],
+    //     subject: "You're Invited!",
+    //     htmlContent: `
+    //       <h2>Hello ${name},</h2>
+    //       <p>${message}</p>
+    //       <p><strong>Role:</strong> ${role}</p>
+    //       <p>Click the link below to accept the invitation:</p>
+    //       <a href="${inviteLink}">${inviteLink}</a>
+    //       <br/><br/>
+    //       <p>Best regards,<br/>${user.name}</p>
+    //     `,
+    //   },
+    //   {
+    //     headers: {
+    //       "api-key": process.env.BREVO_API_KEY,
+    //       "Content-Type": "application/json",
+    //     },
+    //   }
+    // );
 
     res.status(200).json({
-      message: "Invitation sent successfully via email!",
-      mailOptions,
+      inviteLink,
+      message: "Invitation sent successfully ",
       success: true,
     });
   } catch (error) {
-    console.error("Error sending invite:", error);
+    console.error("Error sending invite:", error.response?.data || error);
     res.status(500).json({ message: "Failed to send invitation", success: false });
   }
 });
