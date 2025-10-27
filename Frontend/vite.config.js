@@ -8,19 +8,24 @@ export default defineConfig({
     react(),
     tailwindcss({
       config: {
-        // ✅ This is the crucial part that tells Tailwind where to look
         content: [
           "./index.html",
-          "./src/**/*.{js,ts,jsx,tsx}", // This scans all your component files
+          "./src/**/*.{js,ts,jsx,tsx}",
         ],
-
-        darkMode: 'class', // Make sure this is still here for dark mode
-
-        theme: {
-          extend: {},
-        },
+        darkMode: 'class',
+        theme: { extend: {} },
         plugins: [],
-      }
-    })
+      },
+    }),
   ],
+
+  // ✅ Build output folder for Render
+  build: {
+    outDir: "dist",
+  },
+
+  // ✅ This ensures Vite serves index.html for unknown routes in dev mode
+  preview: {
+    port: 4173,
+  },
 })
