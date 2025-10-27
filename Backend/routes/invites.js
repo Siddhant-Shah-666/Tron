@@ -7,9 +7,9 @@ const companymodel = require('../models/companyModel')
 const invitemodel = require("../models/inviteModel");
 const { isloggedin } = require("../controllers/auth");
 // const usermodel = require("../models/userModel");
-const nodemailer = require("nodemailer");
+// const nodemailer = require("nodemailer");
 
-import axios from "axios";
+
 
 router.post("/inviteuser", isloggedin, async (req, res) => {
   const { name, email, message, role } = req.body;
