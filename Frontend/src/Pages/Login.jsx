@@ -19,44 +19,70 @@ function Login() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
+const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("Form data :", formData);
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/users/login`, {
-        method: "POST",
-        credentials: "include",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/users/login`, {
+            method: "POST",
+            credentials: "include",
+            headers: {
+                "content-type": "application/json",
+            },
+            body: JSON.stringify(formData),
+        });
 
-      const data = await res.json();
-      console.log(data);
+        const data = await res.json();
+        console.log(data);
 
-      if (data.success) {
-        login();
-        toast.success(data.message);
-        if (invitetoken && invitetoken !== "null" && invitetoken.trim() !== "") {
-          console.log("3 - Redirecting to Invite Page");
-          navigate(`/invitepage/${invitetoken}`);
+        if (data.success) {
+            login();
+            toast.success(data.message);
+
+          
+            const isSessionReady = await checkSessionReady();
+
+            if (isSessionReady) {
+              
+                if (invitetoken && invitetoken !== "null" && invitetoken.trim() !== "") {
+                    console.log("3 - Redirecting to Invite Page");
+                    navigate(`/invitepage/${invitetoken}`);
+                }
+                else if (data.companyId) {
+                    console.log("1 - Redirecting to Dashboard");
+                    navigate("/dashboard");
+                }
+                else {
+                    console.log("2 - Redirecting to Add Company");
+                    navigate("/addcompany");
+                }
+            } else {
+                
+                toast.error("Session initialization failed. Please log in again.");
+                navigate("/"); 
+            }
+        } else {
+            toast.error(data.message);
         }
-        // 2. Check for a valid company ID (Dashboard access)
-        else if (data.companyId) {
-          console.log("1 - Redirecting to Dashboard");
-          navigate("/dashboard");
-        }
-        // 3. Fallback: If no invite and no company ID, send to create company
-        else {
-          console.log("2 - Redirecting to Add Company");
-          navigate("/addcompany");
-        }
-      } else toast.error(data.message);
     } catch (err) {
-      console.log(err);
+        console.log(err);
     }
-  };
+};
+
+const checkSessionReady = async () => {
+    try {
+        // Use a simple authenticated endpoint that relies on the cookie
+        const authCheckRes = await fetch(`${import.meta.env.VITE_API_URL}/users/getuser`, { 
+            credentials: 'include' 
+        });
+        
+        // Return true if the request was successful
+        return authCheckRes.ok; 
+    } catch (error) {
+        console.error("Session readiness check failed:", error);
+        return false;
+    }
+};
 
   return (
     <>
