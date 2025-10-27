@@ -60,7 +60,7 @@ router.post('/updateuser',
 
     // Handle image upload if present
     if (req.file) {
-      updates.image = req.file.filename; 
+      updates.image = req.file.path; 
     }
 
     // Update user in database

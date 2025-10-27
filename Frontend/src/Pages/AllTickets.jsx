@@ -125,7 +125,7 @@ function AllTickets() {
     <>
 
 
-      <div className="w-[100vw]   md:w-[80vw] bg-blue-00 flex flex-col  justify-start md:items-center text-white">
+      <div className="w-full   md:w-[80vw] bg-blue-00 flex flex-col  justify-start md:items-center text-white">
 
         {projectId && (
           <div className="w-[70vw] md:w-[75vw]  flex flex-col justify-center items-start rounded font-bold p-3 gap-2 border bg-slate-950 border-cyan-400 shadow-lg shadow-cyan-400/30 text-cyan-400 ">
@@ -205,7 +205,7 @@ function AllTickets() {
 
 
 
-        <div className="stats w-[100vw] md:w-[77vw] h-auto md:h-[23vh] px-4 py-6 grid  grid-cols-2 md:grid-cols-4 gap-3 md:gap-5 bg-red-40">
+        <div className="stats w-full md:w-[77vw] h-auto md:h-[23vh] px-4 py-6 grid  grid-cols-2 md:grid-cols-4 gap-3 md:gap-5 bg-red-40">
           <StatsCard title="Total Tickets" stats={tickets?.length} />
           <StatsCard title="Open Tickets" stats={tickets?.filter(ticket => ticket.status === "Open").length} />
           <StatsCard title="High Priority" stats={tickets?.filter(ticket=>ticket.priority === "High").length} />
@@ -215,7 +215,7 @@ function AllTickets() {
 
 
 
-        <div className=" w-[100vw] bg-blue-30 flex flex-col justify-start items-center text-white">
+        <div className=" w-full bg-blue-30 flex flex-col justify-start items-center text-white">
          {tickets && <Ticket2 tickets ={tickets} userId={user}  /> }
           {tickets && <Tickets tickets ={tickets}  mytask={false} userId={user} /> }
         </div>

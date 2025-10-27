@@ -22,7 +22,7 @@ It includes authentication, company-based user management, live chat for tickets
 - JWT Authentication
 - Socket.io (for chat)
 - dotenv for environment variables
-- Multer for file sharing 
+- Multer & Cloudnary for file sharing 
 
 ##  Features
 
@@ -65,4 +65,6 @@ It includes authentication, company-based user management, live chat for tickets
 -  Pagination for tickets & projects  
 -  Email-based status notifications
 -  Google sign_up for simplicity
+
+
 

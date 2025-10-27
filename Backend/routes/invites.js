@@ -27,20 +27,24 @@ router.post("/inviteuser", isloggedin, async (req, res) => {
       status: "Open",
     });
 
-    const inviteLink = `http://localhost:5173/invitepage/${token}`;
+    const inviteLink = `${process.env.FRONTEND_URL}/invitepage/${token}`;
 
     // Setup Nodemailer transporter
     const transporter = nodemailer.createTransport({
-      service: "gmail", 
+      host: "smtp.gmail.com",
+      port: 465,
+      secure: true,
       auth: {
-        user: "hinatasid1234@gmail.com", 
-        pass: "luczvgxoylaejehr",        
+        user: process.env.BREVO_USER,
+        pass: process.env.BREVO_PASS,
       },
+      connectionTimeout: 30000, 
+    greetingTimeout: 15000,
     });
 
     //email compose
     const mailOptions = {
-      from: `"${user.name}" <${user.email}>`, 
+      from: `"${user.name}" <${user.email}>`,
       to: email,
       subject: "You're Invited!",
       html: `
@@ -63,70 +67,70 @@ router.post("/inviteuser", isloggedin, async (req, res) => {
     });
   } catch (error) {
     console.error("Error sending invite:", error);
-    res.status(500).json({ message: "Failed to send invitation",success: false });
+    res.status(500).json({ message: "Failed to send invitation", success: false });
   }
 });
 
 
 router.post("/checkinvites/:invitetoken", async (req, res) => {
-    const token = req.params.invitetoken;
+  const token = req.params.invitetoken;
 
-    console.log(token, "token");
-
-
+  console.log(token, "token");
 
 
-    try {
-        //finding invite 
-        const invite = await invitemodel.findOne({ token }).populate("company")
-        if (!invite) {
-            return res.status(400).json({ message: "not invited" })
-        }
 
-        //  checking user login status
-        let user = null;
-        // console.log(req.cookies.token);
-        
-        if (req.cookies.token) {
-            const decoded = Jwt.verify(req.cookies.token, "secret")
-            console.log(decoded);
-            
-            user = await usermodel.findById(decoded.id)
-            console.log(user);
-            
-        }
-        if (!user) {
-            return res.status(401).json({ message: "please login first" })
-        }
 
-        //check if user is already listed to company & if not then add it
-        const company = await companymodel.findById(invite.company)
-        const alreadymember = company.members.some((member)=>{
-           return member.toString() === user._id.toString()
-        })
-        
-        if(!alreadymember){
-        company.members.push(user._id)
-        await company.save()
-        }
-        //update invite status
-        invite.status = "Accepted"
-        await invite.save();
+  try {
+    //finding invite 
+    const invite = await invitemodel.findOne({ token }).populate("company")
+    if (!invite) {
+      return res.status(400).json({ message: "not invited" })
+    }
 
-        //update user model
-        user.role = invite.role
-        user.companyId = invite.company
-        await user.save()
+    //  checking user login status
+    let user = null;
+    // console.log(req.cookies.token);
 
-        //delete invite after use
-        await invitemodel.deleteOne({_id:invite._id})
+    if (req.cookies.token) {
+      const decoded = Jwt.verify(req.cookies.token, "secret")
+      console.log(decoded);
 
-        res.status(200).json({ message: "invite accepted", invite, user,success:true })
-
-    } catch (error) {
-        console.error(error);
+      user = await usermodel.findById(decoded.id)
+      console.log(user);
 
     }
+    if (!user) {
+      return res.status(401).json({ message: "please login first" })
+    }
+
+    //check if user is already listed to company & if not then add it
+    const company = await companymodel.findById(invite.company)
+    const alreadymember = company.members.some((member) => {
+      return member.toString() === user._id.toString()
+    })
+
+    if (!alreadymember) {
+      company.members.push(user._id)
+      await company.save()
+    }
+    //update invite status
+    invite.status = "Accepted"
+    await invite.save();
+
+    //update user model
+    user.role = invite.role
+    user.companyId = invite.company
+    await user.save()
+
+    //delete invite after use
+    await invitemodel.deleteOne({ _id: invite._id })
+
+    res.status(200).json({ message: "invite accepted", invite, user, success: true })
+
+  } catch (error) {
+    console.error(error);
+
+  }
 
 
 

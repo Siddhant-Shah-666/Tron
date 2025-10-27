@@ -5,7 +5,7 @@ function StatsCard(props) {
   return (
     <div className='
       h-[15vh] w-[40vw] md:h-[15vh] md:w-[17vw] 
-      rounded-xl flex flex-col justify-center items-start  p-3
+      rounded-xl flex flex-col justify-start md:justify-center items-start  p-3
       md:p-5 md:p-5 gap-y-1 md:gap-y-2 relative 
       
       border bg-slate-950/40 backdrop-blur-md border-cyan-400 text-cyan-300 

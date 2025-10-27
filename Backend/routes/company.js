@@ -21,7 +21,10 @@ router.post("/createcompany",isloggedin,upload.single("image"), async (req,res)=
             name,
             desc,
             admin : user._id
+            
         });
+        company.members.push(user._id)
+        await company.save();
         user.companyId = company._id;
         user.role = "Admin"
         await user.save();
