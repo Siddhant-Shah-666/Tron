@@ -40,19 +40,20 @@ function Login() {
  if(data.success){
   login()
   toast.success(data.message)
-if(data.companyId) {
-  console.log("1");
-  
-    navigate("/dashboard");
-} else if(!data.companyId){
-    console.log("2");
-    
-      navigate("/addcompany");
-   }else if(invitetoken){
-    console.log("3");
-    
-      navigate(`/invitepage/${invitetoken}`);
-   }
+if (invitetoken) {
+            console.log("3 - Redirecting to Invite Page");
+            navigate(`/invitepage/${invitetoken}`);
+        } 
+        // 2. Check for a valid company ID (Dashboard access)
+        else if (data.companyId) {
+            console.log("1 - Redirecting to Dashboard");
+            navigate("/dashboard");
+        } 
+        // 3. Fallback: If no invite and no company ID, send to create company
+        else { 
+            console.log("2 - Redirecting to Add Company");
+            navigate("/addcompany");
+        }
   
  }else(
    toast.error(data.message)
