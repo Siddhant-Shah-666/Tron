@@ -17,7 +17,7 @@ router.post("/createcompany",isloggedin,upload.single("image"), async (req,res)=
     try{
         console.log("helll nnno");
         let company = await companymodel.create({
-            image:req.file? req.file.filename : null,
+            image:req.file? req.file.path : null,
             name,
             desc,
             admin : user._id

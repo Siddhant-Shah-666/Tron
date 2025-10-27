@@ -38,7 +38,8 @@ function Company() {
            <div className="pic  h-[25vh] w-[30vw] md:h-[40vh]  md:w-[20vw] bg-red-300 rounded-xl        border bg-slate-950 border-cyan-400 text-cyan-300 
       shadow-lg shadow-cyan-400/30">
               <img
-                src={`${import.meta.env.VITE_API_URL}/uploads/${company?.image}`}
+                // src={`${import.meta.env.VITE_API_URL}/uploads/${company?.image}`}
+                src={company?.image}
                 alt=""
                 className="w-full h-full object-full rounded-xl"
               />

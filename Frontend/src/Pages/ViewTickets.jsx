@@ -178,7 +178,7 @@ useEffect(() => {
             <p className="text-xl">Submitter : {ticketDetails?.reportedBy?.name}</p>
 
             <div className=" w-full ">
-              <form action="" className="flex gap-3" onSubmit={handleSubmit}>
+              <form action="" className="flex flex-col md:flex-row gap-3" onSubmit={handleSubmit}>
                 {!isAdmin && (<p className="text-xl mr-5">Developer : {ticketDetails?.assignedTo?.name}</p>)}
                 
                 {isAdmin && (
@@ -246,12 +246,12 @@ useEffect(() => {
               type="text"
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              className="h-[5vh] w-[40vw] text-cyan-400 font-bold rounded p-2  border bg-slate-800 border-cyan-400 shadow-md shadow-cyan-400/30"
+              className="h-[5vh] w-[60vw] md:w-[40vw] text-cyan-400 font-bold rounded p-2  border bg-slate-800 border-cyan-400 shadow-md shadow-cyan-400/30"
               placeholder="Type a message..."
             />
             <button
               type="submit"
-              className="h-[5vh] w-[8vw] hover:bg-cyan-400 text-white font-bold rounded border bg-cyan-800 border-cyan-400 shadow-md shadow-cyan-400/30"
+              className="h-[5vh] w-[20vw] md:h-[5vh] md:w-[8vw] hover:bg-cyan-400 text-white font-bold rounded border bg-cyan-800 border-cyan-400 shadow-md shadow-cyan-400/30"
             >
               Send
             </button>
@@ -261,7 +261,7 @@ useEffect(() => {
         <div className="w-[100vw] md:w-[70vw] flex flex-col justify-center items-start font-bold gap-3 p-5 border rounded-lg bg-slate-950 border-cyan-400 shadow-lg shadow-cyan-400/30">
           <h3 className="text-xl font-bold">Ticket History</h3>
           {ticketDetails?.history?.map((entry, index) => (
-            <div key={index} className="w-[100vw] md:w-[65vw]  text-cyan-300 p-2 border rounded-lg bg-slate-950 border-cyan-400 shadow-lg shadow-cyan-400/30">
+            <div key={index} className="w-[90vw] md:w-[65vw]  text-cyan-300 p-2 border rounded-lg bg-slate-950 border-cyan-400 shadow-lg shadow-cyan-400/30">
               <p>
                 {entry.change} by {entry.changedBy?.name} at{" "}
                 {new Date(entry.date).toLocaleDateString("en-IN", {

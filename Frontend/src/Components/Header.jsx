@@ -21,7 +21,7 @@ const matchAllTickets = useMatch("/alltickets/:companyId/:projectId?");
   return (
     <header className='w-[100vw] md:w-[85vw] h-[12vh] md:bg-slate-950/90 md:backdrop-blur-md text-white  flex justify-end items-center gap-3 px-5 md:px-10 '>
       <div
-        className="h-8 w-8  md:hidden absolute top-5.5 left-5 flex justify-center items-center cursor-pointer rounded z-11  border bg-slate-800 border-cyan-400 text-cyan-300 shadow-lg shadow-cyan-400/30"
+        className="h-10 w-10  md:hidden absolute top-5.5 left-5 flex justify-center items-center cursor-pointer rounded z-11  border bg-slate-800 border-cyan-400 text-cyan-300 shadow-lg shadow-cyan-400/30"
         onClick={toggleNavbar}
       >
         {showNavbar ? "✖" : "☰"}
@@ -30,15 +30,15 @@ const matchAllTickets = useMatch("/alltickets/:companyId/:projectId?");
 
 
       {location.pathname === "/dashboard" && isAdmin &&  (
-        <Link to="invite"><button className='h-[6vh] w-[25vw] md:h-[6vh] md:w-[10vw] font-bold  text-red-400 hover:text-white rounded hover:bg-red-500 border  border-red-400 shadow-lg shadow-red-400/30 '>Invite+</button></Link>
+        <Link to="invite"><button className='h-[5vh] w-[25vw] md:h-[6vh] md:w-[10vw] font-bold  text-red-400 hover:text-white rounded hover:bg-red-500 border  border-red-400 shadow-lg shadow-red-400/30 '>Invite+</button></Link>
       )}
 
       {location.pathname === "/profile" && (
-        <button onClick={logout} className='h-[6vh] w-[25vw] md:h-[6vh] md:w-[10vw] font-bold  text-red-400 hover:text-white rounded hover:bg-red-500 border  border-red-400 shadow-lg shadow-red-400/30'>Logout</button>
+        <button onClick={logout} className='h-[5vh] w-[25vw] md:h-[6vh] md:w-[10vw] font-bold  text-red-400 hover:text-white rounded hover:bg-red-500 border  border-red-400 shadow-lg shadow-red-400/30'>Logout</button>
       )}
 
       {matchAllTickets && (
-        <Link to="addticket"><button className='h-[6vh] w-[25vw] md:h-[6vh] md:w-[10vw] font-bold  text-red-400 hover:text-white rounded hover:bg-red-500 border  border-red-400 shadow-lg shadow-red-400/30 '>New ticket</button></Link>
+        <Link to="addticket"><button className='h-[5vh] w-[25vw] md:h-[6vh] md:w-[10vw] font-bold  text-red-400 hover:text-white rounded hover:bg-red-500 border  border-red-400 shadow-lg shadow-red-400/30 '>New ticket</button></Link>
       )}
 
       {/* { && (
@@ -46,11 +46,11 @@ const matchAllTickets = useMatch("/alltickets/:companyId/:projectId?");
       )} */}
 
       {location.pathname === "/projects" && (
-        <Link to="addproject"><button className='h-[6vh] w-[25vw] md:h-[6vh] md:w-[10vw] font-bold  text-red-400 hover:text-white rounded hover:bg-red-500 border  border-red-400 shadow-lg shadow-red-400/30 '>New project</button></Link>
+        <Link to="addproject"><button className='h-[5vh] w-[28vw] md:h-[6vh] md:w-[10vw] font-bold  text-red-400 hover:text-white rounded hover:bg-red-500 border  border-red-400 shadow-lg shadow-red-400/30 '>New project</button></Link>
       )}
 
       {location.pathname === "/company" && isAdmin && (
-        <Link to="invite"><button className='h-[6vh] w-[25vw] md:h-[6vh] md:w-[10vw] font-bold  text-red-400 hover:text-white rounded hover:bg-red-500 border  border-red-400 shadow-lg shadow-red-400/30 '>Invite+</button></Link>
+        <Link to="invite"><button className='h-[5vh] w-[25vw] md:h-[6vh] md:w-[10vw] font-bold  text-red-400 hover:text-white rounded hover:bg-red-500 border  border-red-400 shadow-lg shadow-red-400/30 '>Invite+</button></Link>
       )}
 
 <Link to="profile">
@@ -65,7 +65,7 @@ const matchAllTickets = useMatch("/alltickets/:companyId/:projectId?");
     ease:"linear"
     
   }}
-    className='h-9 w-9 font-bold rounded-full mt-1 ml-2 hover:text-white border border-cyan-400 
+    className='h-12 w-12 font-bold rounded-full mt-1 ml-2 hover:text-white border border-cyan-400 
                shadow-[0_0_12px_3px] shadow-cyan-400/60 '
               
   >

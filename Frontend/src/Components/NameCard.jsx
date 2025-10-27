@@ -55,7 +55,8 @@ function NameCard({ key, member }) {
       shadow-lg shadow-cyan-400/30"
           >
             <img
-              src={`${import.meta.env.VITE_API_URL}/uploads/${member?.image}`}
+              // src={`${import.meta.env.VITE_API_URL}/uploads/${member?.image}`}
+              src={member?.image}
               alt=" Upload Image"
               className="w-full h-full object-cover rounded-xl"
             />

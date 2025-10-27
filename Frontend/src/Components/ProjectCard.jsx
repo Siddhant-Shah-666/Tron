@@ -22,7 +22,7 @@ function ProjectCard({ projects ,companyId}) {
             </h3>
           </div>
          <Link to={`/alltickets/${companyId}/${project?._id}`}>
-          <button className='h-[4vh] w-[80vw] md:h-[5vh] md:w-[8vw]  rounded-xl   text-white rounded hover:bg-cyan-500 border bg-cyan-800  border-cyan-400 shadow-lg shadow-cyan-400/30 '>View</button>
+          <button className='h-[4vh] w-[80vw] md:h-[5vh] md:w-[8vw] md:mt-2 mt-0 rounded-xl   text-white rounded hover:bg-cyan-500 border bg-cyan-800  border-cyan-400 shadow-lg shadow-cyan-400/30 '>View</button>
           </Link>
         </div>
       ))}
