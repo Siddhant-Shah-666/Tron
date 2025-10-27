@@ -42,9 +42,13 @@ function InvitePage() {
         console.error(err);
       }
     };
-    if (invitetoken) {
-      checkInvite();
-    }
+   const timer = setTimeout(() => {
+        if (invitetoken) {
+            checkInvite();
+        }
+    }, 150);
+    
+    return () => clearTimeout(timer);
   }, [invitetoken]);
   return <></>;
 }
