@@ -30,9 +30,9 @@ router.get('/getuser',isloggedin,async(req,res)=>{
     
   }
 
- 
-
 })
+
+
 router.post('/updateuser', 
   body('name').isLength({min:3}).withMessage("Name is too short..!"),
   body('email').isEmail().withMessage("Enter email Correctly")

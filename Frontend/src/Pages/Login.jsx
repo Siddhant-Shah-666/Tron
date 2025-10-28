@@ -39,12 +39,13 @@ function Login() {
         login();
         toast.success(data.message);
         if (invitetoken && invitetoken !== "null" && invitetoken.trim() !== "") {
-          console.log("3 - Redirecting to Invite Page");
-            await new Promise(resolve => setTimeout(resolve, 500));
+
+              const verify = await fetch(`${import.meta.env.VITE_API_URL}/users/getuser`, { credentials: "include" });
+         if(verify.ok){
           navigate(`/invitepage/${invitetoken}`);
         }
         // 2. Check for a valid company ID (Dashboard access)
-        else if (data.companyId) {
+        }else if (data.companyId) {
           console.log("1 - Redirecting to Dashboard");
           navigate("/dashboard");
         }
