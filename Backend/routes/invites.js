@@ -75,9 +75,6 @@ router.post("/checkinvites/:invitetoken", async (req, res) => {
 
   console.log(token, "token");
 
-
-
-
   try {
     //finding invite 
     const invite = await invitemodel.findOne({ token }).populate("company")
@@ -129,7 +126,6 @@ router.post("/checkinvites/:invitetoken", async (req, res) => {
     console.error(error);
 
   }
-
 
 
 })

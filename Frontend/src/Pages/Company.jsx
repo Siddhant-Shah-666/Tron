@@ -34,8 +34,8 @@ function Company() {
       <div className=" w-[100vw] md:w-[80vw] flex flex-col justify-center items-center text-white p-2 md:p-5  md:gap-2 relative">
         {/* company card */}
         <div className="h-[25vh] w-[90vw] md:h-[40vh]  md:w-[75vw]  rounded-xl flex ">
-          <div className="img h-[25vh] w-[30vw] md:h-[40vh]  md:w-[20vw]  relative flex  justify-center items-center rounded-xl">
-           <div className="pic  h-[25vh] w-[30vw] md:h-[40vh]  md:w-[20vw] bg-red-300 rounded-xl        border bg-slate-950 border-cyan-400 text-cyan-300 
+          <div className="img h-[25vh] w-[30vw] md:h-[40vh]  md:w-[20vw]  relative flex  justify-center items-center rounded-xl relative">
+           <div className="pic  h-[25vh] w-[30vw] md:h-[40vh]  md:w-[20vw] absolute left-3 rounded-xl        border bg-slate-950 border-cyan-400 text-cyan-300 
       shadow-lg shadow-cyan-400/30">
               <img
                 // src={`${import.meta.env.VITE_API_URL}/uploads/${company?.image}`}
@@ -45,7 +45,7 @@ function Company() {
               />
             </div> 
           </div>
-          <div className="details h-[25vh] w-[60vw] md:h-[40vh]  md:w-[55vw] flex flex-col justify-start items-start p-2 md:p-4 rounded-r-xl       border bg-slate-950 border-cyan-400 text-cyan-300 
+          <div className="details h-[25vh] w-[60vw] md:h-[40vh]  md:w-[55vw] flex flex-col justify-start items-start p-2 pl-4 md:p-6 rounded-r-xl       border bg-slate-950 border-cyan-400 text-cyan-300 
       shadow-lg shadow-cyan-400/30">
             <p className="text-s md:text-2xl font-bold">{company?.name}</p>
             <p className="text-xs md:text-md font-semibold">{company?.desc}</p>
