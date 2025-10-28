@@ -48,6 +48,7 @@ const registerUser = async (req, res) => {
   secure: true,
   sameSite: "None",
   path: "/",
+  expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), 
 }).status(201).json({ message: "User created successfully...!", token, success: true })
 
 
@@ -91,6 +92,7 @@ const loginUsers = async (req, res) => {
   secure: true,
   sameSite: "None",
   path: "/",
+  expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), 
 }).status(201).json({ message: "login success", token, success: true, companyId: user.companyId })
 
       }
