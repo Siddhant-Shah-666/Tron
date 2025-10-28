@@ -96,8 +96,8 @@ function Ticket2({ tickets}) {
             <option value=''>By Status</option>
             <option value='All'>All</option>
             <option value='Open'>Open</option>
-            <option value='In Progress'>In Progess</option>
-            <option value='Resoved'>Resolved</option>
+            <option value='Progress'>In Progess</option>
+            <option value='Resolved'>Resolved</option>
             <option value='Closed'>Closed</option>
           </select>
           

@@ -5,11 +5,11 @@ const projectSchema = mongoose.Schema({
     name:String,
     message:String,
     priority:String,
-    // manager:{
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref:"userModel"
-    // },
-    manager:String,
+    
+    manager:{
+         type:mongoose.Schema.Types.ObjectId,
+        ref:"user"
+    },
     status:String,
     companyId:{
         type:mongoose.Schema.Types.ObjectId,

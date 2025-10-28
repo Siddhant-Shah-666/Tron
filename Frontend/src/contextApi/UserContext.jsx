@@ -55,9 +55,9 @@ useEffect(() => {
       });
 
       if (!res.ok) {
-        setUser(null);
+        // setUser(null);
         setIsLoggedIn(false);
-        setIsAdmin(false);
+        // setIsAdmin(false);
         return;
       }
 
@@ -69,15 +69,13 @@ useEffect(() => {
         setIsLoggedIn(true);
         setIsAdmin(userData.role === "Admin");
       } else {
-        setUser(null);
+        // setUser(null);
         setIsLoggedIn(false);
-        setIsAdmin(false);
+        // setIsAdmin(false);
       }
     } catch (err) {
       console.error("Auth check failed:", err);
-      setUser(null);
-      setIsLoggedIn(false);
-      setIsAdmin(false);
+    
     }
   };
 
