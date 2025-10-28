@@ -184,10 +184,10 @@ function ViewTickets() {
               Submitter : {ticketDetails?.reportedBy?.name}
             </p>
 
-            <div className=" w-full ">
+            <div className=" w-full  flex flex-col md:flex-row gap-3  ">
               <form
                 action=""
-                className="flex flex-col md:flex-row gap-3"
+                className="flex flex-col  gap-3"
                 onSubmit={handleSubmit}
               >
                 {!isAdmin && (
@@ -217,7 +217,7 @@ function ViewTickets() {
                     </select>
                   </>
                 )}
-                <div className="">
+                <div className="StatusAndPriorityAndUpdate flex flex-col md:flex-row gap-3 ">
                   <span className="md:text-xl ">Priority : </span>
                   <select
                     name="priority"
@@ -239,8 +239,7 @@ function ViewTickets() {
                       High
                     </option>
                   </select>
-                </div>
-                <div className="status  flex ">
+                
                   <span className="md:text-xl ">Status : </span>
                   <select
                     name="status"

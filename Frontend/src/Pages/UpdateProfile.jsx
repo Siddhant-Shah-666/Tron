@@ -36,7 +36,7 @@ function UpdateProfile() {
     const formData = new FormData();
     formData.append("image", profileData.image);
     formData.append("name", profileData.name);
-    formData.append("desc", profileData.email);
+    formData.append("email", profileData.email);
 
     console.log("Form data : ", formData);
     try {
@@ -90,7 +90,7 @@ function UpdateProfile() {
             />
             <textarea
               placeholder="About Company"
-              name="desc"
+              name="email"
               value={profileData.email}
               onChange={handleChange}
               className="border border-cyan-300 rounded p-2 mb-2 h-[10vh]  w-[60vw] md:w-[25vw] resize-none"
@@ -99,7 +99,7 @@ function UpdateProfile() {
               type="submit"
               className="bg-blue-500 text-white p-2  w-[60vw] md:w-[25vw] rounded border hover:bg-cyan-400 bg-cyan-800 border-cyan-400 shadow-lg shadow-cyan-400/30"
             >
-              Company
+              Update 
             </button>
           </form>
         </div>

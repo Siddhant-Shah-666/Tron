@@ -122,7 +122,7 @@ router.get('/gettickets/bycom/:companyId', isloggedin, async (req, res) => {
 })
 
 router.post("/updateticket", isloggedin, async (req, res) => {
-    const { ticketid, assignedTo, status } = req.body;
+    const { ticketid, assignedTo, status, priority } = req.body;
 
     if (!ticketid) {
         return res.status(400).json({ error: "Ticket ID is required" });

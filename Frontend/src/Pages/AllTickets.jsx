@@ -185,8 +185,8 @@ function AllTickets() {
                     </>
                   )}
                 </div>
-                <div className="StatusAndPriority flex flex-col md:flex-row gap-3 ">
-                  <div className="status flex">
+                <div className="StatusAndPriorityAndUpdate flex flex-col md:flex-row gap-3 ">
+                  <div className="statuspriorityonly  flex gap-3">
                     <span className="md:text-xl ">Status : </span>
                     <select
                       name="status"
@@ -210,9 +210,9 @@ function AllTickets() {
                         Closed
                       </option>
                     </select>
-                  </div>
+                  
 
-                  <div className="priority flex">
+                  
                     <span className="md:text-xl ">Priority : </span>
                     <select
                       name="priority"

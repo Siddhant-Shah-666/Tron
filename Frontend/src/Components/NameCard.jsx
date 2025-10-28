@@ -36,7 +36,7 @@ function NameCard({ key, member }) {
 
     const data = await res.json();
     if (data.success) {
-      navigate(-1);
+      // navigate(-1);
       toast.success(data.message);
     } else toast.error(data.message);
   };
