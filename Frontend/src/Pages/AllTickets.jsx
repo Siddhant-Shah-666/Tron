@@ -192,7 +192,7 @@ function AllTickets() {
                       name="status"
                       value={formData.status}
                       onChange={handleChange}
-                      className="border border-cyan-300 rounded-lg p-1 mb-2  w-[30vw] md:w-[10vw] "
+                      className="border border-cyan-300 rounded-lg p-1 mb-2  w-[25vw] md:w-[10vw] "
                     >
                       <option className="bg-slate-800" value="">
                         {project?.status}
@@ -218,7 +218,7 @@ function AllTickets() {
                       name="priority"
                       value={formData.priority}
                       onChange={handleChange}
-                      className="border border-cyan-300 rounded-lg p-1 mb-2  w-[30vw] md:w-[10vw] "
+                      className="border border-cyan-300 rounded-lg p-1 mb-2  w-[25vw] md:w-[10vw] "
                     >
                       <option className="bg-slate-800" value="">
                         {project?.priority}
@@ -237,7 +237,7 @@ function AllTickets() {
 
                   <button
                     type="submit"
-                    className="bg-blue-500 text-white  h-[5vh]  w-[40vw] md:w-[8vw] rounded-xl hover:bg-cyan-400 border bg-cyan-800 border-cyan-400 shadow-md shadow-cyan-400/30"
+                    className="bg-blue-500 text-white  h-[5vh] ml-[10vw] md:ml-0  w-[80vw] md:w-[8vw] rounded-xl hover:bg-cyan-400 border bg-cyan-800 border-cyan-400 shadow-md shadow-cyan-400/30"
                   >
                     Update
                   </button>
@@ -247,7 +247,7 @@ function AllTickets() {
           </div>
         )}
 
-        <div className="stats w-full md:w-[77vw] h-auto md:h-[23vh] px-4 py-6 grid  grid-cols-2 md:grid-cols-4 gap-3 md:gap-5 bg-red-40">
+        <div className="stats w-full md:w-[77vw] h-auto md:h-[23vh] px-4 py-6 grid  grid-cols-2 md:grid-cols-4 gap-4 md:gap-5 bg-red-40">
           <StatsCard title="Total Tickets" stats={tickets?.length} />
           <StatsCard
             title="Open Tickets"

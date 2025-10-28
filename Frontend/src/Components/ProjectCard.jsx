@@ -14,15 +14,15 @@ function ProjectCard({ projects ,companyId}) {
           <div className="w-[80vw] md:w-80 bg-red-60 flex gap-5">
             <h3 className='md:text-l'>
               <span>Priority : </span>
-              <span className='h-2 px-1 md:px-2 py-[.2vw] ml-2 rounded-md  text-red-400 rounded  border  border-red-400 shadow-lg shadow-red-400/30'>{project?.priority}</span>
+              <span className='h-2 px-1 md:px-2 py-[.2vw] ml-2 rounded-md  text-white rounded  border  border-white shadow-lg shadow-white-400/30'>{project?.priority}</span>
             </h3>
             <h3 className='md:text-l'>
               <span>Status : </span>
-              <span className='h-2  px-1 md:px-2 py-[.2vw] ml-2 rounded-md  text-red-400 rounded  border  border-red-400 shadow-lg shadow-red-400/30'>{project?.status}</span>
+              <span className='h-2  px-1 md:px-2 py-[.2vw] ml-2 rounded-md  text-white rounded  border  border-white shadow-lg shadow-white-400/30'>{project?.status}</span>
             </h3>
           </div>
          <Link to={`/alltickets/${companyId}/${project?._id}`}>
-          <button className='h-[4vh] w-[80vw] md:h-[5vh] md:w-[8vw] md:mt-2 mt-0 rounded-xl   text-white rounded hover:bg-cyan-500 border bg-cyan-800  border-cyan-400 shadow-lg shadow-cyan-400/30 '>View</button>
+          <button className='h-[4vh] w-[80vw] md:h-[5vh] md:w-[8vw] md:mt-0 mt-2 rounded-xl   text-white rounded hover:bg-cyan-500 border bg-cyan-800  border-cyan-400 shadow-lg shadow-cyan-400/30 '>View</button>
           </Link>
         </div>
       ))}

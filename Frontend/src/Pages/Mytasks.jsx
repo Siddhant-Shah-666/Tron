@@ -37,7 +37,7 @@ function Mytasks() {
   return (
     <>
     <div className=' w-[100vw] md:max-w-[80vw] bg-blue-6 flex flex-col justify-start md:items-center text-white '>
-      <div className="stats w-full h-auto md:h-[23vh] px-4 py-6 grid  grid-cols-2 md:grid-cols-4 gap-3 md:gap-5 bg-red-40">
+      <div className="stats w-full h-auto md:h-[23vh] px-4 py-6 grid  grid-cols-2 md:grid-cols-4 gap-4 md:gap-5 bg-red-40">
         <StatsCard title="Total Tickets" stats={tickets?.length} />
         <StatsCard title="Opened Tickets" stats={tickets?.filter(ticket => ticket.status === "Open").length} />
            <StatsCard title="In Progress" stats={tickets?.filter(ticket => ticket.status === "Progress").length} />

@@ -217,13 +217,13 @@ function ViewTickets() {
                     </select>
                   </>
                 )}
-                <div className="StatusAndPriorityAndUpdate flex flex-col md:flex-row gap-3 ">
+                <div className="StatusAndPriorityAndUpdate flex  gap-3 ">
                   <span className="md:text-xl ">Priority : </span>
                   <select
                     name="priority"
                     value={formData.priority}
                     onChange={handleChange}
-                    className="border border-cyan-300 rounded-lg p-1 mb-2  w-[30vw] md:w-[10vw] "
+                    className="border border-cyan-300 rounded-lg p-1 mb-2  w-[25vw] md:w-[10vw] "
                   >
                     <option className="bg-slate-800" value="">
                       {ticketDetails.priority}
@@ -245,7 +245,7 @@ function ViewTickets() {
                     name="status"
                     value={formData.status}
                     onChange={handleChange}
-                    className="border border-cyan-300 rounded-lg p-1 mb-2  w-[30vw] md:w-[10vw] "
+                    className="border border-cyan-300 rounded-lg p-1 mb-2  w-[25vw] md:w-[10vw] "
                   >
                     <option className="bg-slate-800" value="">
                       {ticketDetails.status}
@@ -269,7 +269,7 @@ function ViewTickets() {
                 
                 <button
                   type="submit"
-                  className="bg-blue-500 text-white  h-[5vh]  w-[40vw] md:w-[8vw] rounded-xl hover:bg-cyan-400 border bg-cyan-800 border-cyan-400 shadow-md shadow-cyan-400/30"
+                  className="bg-blue-500 text-white  h-[5vh]  w-[80vw] md:w-[8vw] ml-[10vw] md:ml-0 rounded-xl hover:bg-cyan-400 border bg-cyan-800 border-cyan-400 shadow-md shadow-cyan-400/30"
                 >
                   Update
                 </button>
