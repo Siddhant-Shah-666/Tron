@@ -65,7 +65,7 @@ function App() {
                   showNavbar={showNavbar}
                 />
               </div>
-              <div className="main w-[100vw] md:w-[85vw] md:h-[88vh] h-[90vh] relative md:p-5 overflow-y-auto border border-cyan-400 text-cyan-300 shadow-lg shadow-cyan-400/30 bg-slate-950/70">
+              <div className="main w-[100vw] md:w-[85vw] md:h-[88vh] h-[90vh] relative md:p-5 overflow-y-auto border border-cyan-400 text-cyan-300 shadow-lg shadow-cyan-400/30 bg-slate-950/60">
                 <div className="relative z-5">
                   <AppRoutes />
                 </div>

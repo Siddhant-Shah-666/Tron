@@ -19,7 +19,7 @@ const matchAllTickets = useMatch("/alltickets/:companyId/:projectId?");
 
 
   return (
-    <header className='w-[100vw] md:w-[85vw] h-[12vh] md:bg-slate-950/90 md:backdrop-blur-md text-white  flex justify-end items-center gap-3 px-5 md:px-10 '>
+    <header className='w-[100vw] md:w-[85vw] h-[12vh] bg-slate-950/90 md:backdrop-blur-md text-white  flex justify-end items-center gap-3 px-5 md:px-10 '>
       <div
         className="h-10 w-10  md:hidden absolute top-5.5 left-5 flex justify-center items-center cursor-pointer rounded z-11  border bg-slate-800 border-cyan-400 text-cyan-300 shadow-lg shadow-cyan-400/30"
         onClick={toggleNavbar}

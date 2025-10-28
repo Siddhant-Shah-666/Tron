@@ -7,7 +7,7 @@ import ChatCard from "../Components/ChatCard";
 import io from "socket.io-client";
 
 function ViewTickets() {
-  const {isAdmin} = useUser()
+  const { isAdmin } = useUser();
   const { ticketId } = useParams();
 
   const [user, setUser] = useState(null);
@@ -22,30 +22,29 @@ function ViewTickets() {
         // console.log(data.user?.assignedTickets?.length);
 
         setUser(data.user);
-
       });
   }, []);
 
   const [messages, setMessages] = useState([]);
 
-useEffect(() => {
+  useEffect(() => {
     const fetchChatHistory = async () => {
-        if (!ticketId) return;
-        try {
-            const response = await fetch(`${import.meta.env.VITE_API_URL}/chats/getchats/${ticketId}`);
-            if (response.ok) {
-                const history = await response.json();
-                setMessages(history);
-            }
-        } catch (error) {
-            console.error("Failed to fetch chat history:", error);
+      if (!ticketId) return;
+      try {
+        const response = await fetch(
+          `${import.meta.env.VITE_API_URL}/chats/getchats/${ticketId}`
+        );
+        if (response.ok) {
+          const history = await response.json();
+          setMessages(history);
         }
+      } catch (error) {
+        console.error("Failed to fetch chat history:", error);
+      }
     };
 
     fetchChatHistory();
-}, [ticketId]); // It runs whenever the ticketId changes
-
-
+  }, [ticketId]); // It runs whenever the ticketId changes
 
   const [input, setInput] = useState("");
   const [socket, setSocket] = useState(null);
@@ -73,23 +72,20 @@ useEffect(() => {
   const handleSendMessage = async (e) => {
     e.preventDefault();
 
-    
     if (!socket || !input.trim() || !user) return;
 
-    //  message payload 
+    //  message payload
     const messageData = {
       ticketId: ticketId,
-     userId: {
-            _id: user?._id,
-            name: user?.name // Include the name here!
-        },
+      userId: {
+        _id: user?._id,
+        name: user?.name, // Include the name here!
+      },
       message: input,
     };
 
     socket.emit("sendMessage", messageData);
 
-
-    
     setInput("");
   };
 
@@ -98,14 +94,18 @@ useEffect(() => {
     ticketid: ticketId,
     assignedTo: "",
     status: "",
+    priority: "",
   });
   // fetching members
   useEffect(() => {
     const fetchMembers = async () => {
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/company/getcompany`, {
-        method: "GET",
-        credentials: "include",
-      });
+      const res = await fetch(
+        `${import.meta.env.VITE_API_URL}/company/getcompany`,
+        {
+          method: "GET",
+          credentials: "include",
+        }
+      );
       const data = await res.json();
       console.log("members", data.company.members);
 
@@ -122,14 +122,17 @@ useEffect(() => {
     e.preventDefault();
     console.log("form data :", formData);
 
-    const res = await fetch(`${import.meta.env.VITE_API_URL}/tickets/updateticket`, {
-      method: "POST",
-      credentials: "include",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    });
+    const res = await fetch(
+      `${import.meta.env.VITE_API_URL}/tickets/updateticket`,
+      {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      }
+    );
 
     const data = await res.json();
     if (data.success) {
@@ -145,7 +148,9 @@ useEffect(() => {
       try {
         if (ticketId) {
           const res = await fetch(
-            `${import.meta.env.VITE_API_URL}/tickets/gettickets/byid/${ticketId}`,
+            `${
+              import.meta.env.VITE_API_URL
+            }/tickets/gettickets/byid/${ticketId}`,
             {
               method: "GET",
               credentials: "include",
@@ -169,57 +174,103 @@ useEffect(() => {
       <div className="w-[100vw] md:w-[80vw]  flex flex-col justify-center items-center text-white p-5 gap-5 ">
         {/* ticketDetails */}
         {ticketDetails && (
-          <div className=" w-[100vw] md:w-[70vw]  flex flex-col justify-center items-start rounded font-bold p-3 gap-2 border bg-slate-950 border-cyan-400 shadow-lg shadow-cyan-400/30 text-cyan-400 ">
+          <div className=" w-[100vw] md:w-[70vw]  flex flex-col justify-center items-start rounded font-bold p-3 gap-2 border bg-slate-950/40 backdrop-blur-md border-cyan-400 shadow-lg shadow-cyan-400/30 text-cyan-400 ">
             <p className="text-xl">Project : {ticketDetails?.project?.name}</p>
             <p className="text-2xl font-semibold">
               Ticket : {ticketDetails?.name}
             </p>
             <p>Info : {ticketDetails?.message}</p>
-            <p className="text-xl">Submitter : {ticketDetails?.reportedBy?.name}</p>
+            <p className="text-xl">
+              Submitter : {ticketDetails?.reportedBy?.name}
+            </p>
 
             <div className=" w-full ">
-              <form action="" className="flex flex-col md:flex-row gap-3" onSubmit={handleSubmit}>
-                {!isAdmin && (<p className="text-xl mr-5">Developer : {ticketDetails?.assignedTo?.name}</p>)}
-                
-                {isAdmin && (
-                  <>
-                  <span className="text-xl">Developer : </span>
-                  <select
-                  name="assignedTo"
-                  value={formData.assignedTo}
-                  onChange={handleChange}
-                  className="border border-cyan-300 rounded-lg p-2 mb-2  w-[60vw] md:w-[15vw]"
-                >
-                  <option className="bg-slate-800" value="">{ticketDetails?.assignedTo?.name}</option>
-                  {members &&
-                    members.map((member) => (
-                      <option key={member?._id} value={member?._id}>
-                        {member?.name}
-                      </option>
-                    ))}
-                </select>
-                  </>
-                  
-
+              <form
+                action=""
+                className="flex flex-col md:flex-row gap-3"
+                onSubmit={handleSubmit}
+              >
+                {!isAdmin && (
+                  <p className="text-xl mr-5">
+                    Developer : {ticketDetails?.assignedTo?.name}
+                  </p>
                 )}
 
+                {isAdmin && (
+                  <>
+                    <span className="text-xl">Developer : </span>
+                    <select
+                      name="assignedTo"
+                      value={formData.assignedTo}
+                      onChange={handleChange}
+                      className="border border-cyan-300 rounded-lg p-2 mb-2  w-[60vw] md:w-[15vw]"
+                    >
+                      <option className="bg-slate-800" value="">
+                        {ticketDetails?.assignedTo?.name}
+                      </option>
+                      {members &&
+                        members.map((member) => (
+                          <option key={member?._id} value={member?._id}>
+                            {member?.name}
+                          </option>
+                        ))}
+                    </select>
+                  </>
+                )}
+                <div className="">
+                  <span className="md:text-xl ">Priority : </span>
+                  <select
+                    name="priority"
+                    value={formData.priority}
+                    onChange={handleChange}
+                    className="border border-cyan-300 rounded-lg p-1 mb-2  w-[30vw] md:w-[10vw] "
+                  >
+                    <option className="bg-slate-800" value="">
+                      {ticketDetails.priority}
+                    </option>
 
-                <span className="md:text-xl ">Status : </span>
-                <select
-                  name="status"
-                  value={formData.status}
-                  onChange={handleChange}
-                  className="border border-cyan-300 rounded-lg p-1 mb-2  w-[20vw] md:w-[10vw] "
-                >
-                  <option className="bg-slate-800" value="">{ticketDetails.status}</option>
-                  <option className="bg-slate-800" value="Open">Open</option>
-                  <option className="bg-slate-800" value="Progress">In Progress</option>
-                  <option className="bg-slate-800" value="Resolved">Resolved</option>
-                  <option className="bg-slate-800" value="Closed">Closed</option>
-                </select>
+                    <option className="bg-slate-800" value="Low">
+                      Low
+                    </option>
+                    <option className="bg-slate-800" value="Medium">
+                      Medium
+                    </option>
+                    <option className="bg-slate-800" value="High">
+                      High
+                    </option>
+                  </select>
+                </div>
+                <div className="status  flex ">
+                  <span className="md:text-xl ">Status : </span>
+                  <select
+                    name="status"
+                    value={formData.status}
+                    onChange={handleChange}
+                    className="border border-cyan-300 rounded-lg p-1 mb-2  w-[30vw] md:w-[10vw] "
+                  >
+                    <option className="bg-slate-800" value="">
+                      {ticketDetails.status}
+                    </option>
+                    <option className="bg-slate-800" value="Open">
+                      Open
+                    </option>
+                    <option className="bg-slate-800" value="Progress">
+                      In Progress
+                    </option>
+                    <option className="bg-slate-800" value="Resolved">
+                      Resolved
+                    </option>
+                    <option className="bg-slate-800" value="Closed">
+                      Closed
+                    </option>
+                  </select>
+                </div>
+
+              
+                
                 <button
                   type="submit"
-                  className="bg-blue-500 text-white  h-[5vh]  w-[20vw] md:w-[8vw] rounded-xl hover:bg-cyan-400 border bg-cyan-800 border-cyan-400 shadow-md shadow-cyan-400/30"
+                  className="bg-blue-500 text-white  h-[5vh]  w-[40vw] md:w-[8vw] rounded-xl hover:bg-cyan-400 border bg-cyan-800 border-cyan-400 shadow-md shadow-cyan-400/30"
                 >
                   Update
                 </button>
@@ -229,9 +280,9 @@ useEffect(() => {
         )}
 
         {/* chatBox */}
-        <div className="w-[100vw] md:w-[70vw] h-[50vh]  flex flex-col items-start rounded p-3 gap-2 overflow-y-auto border bg-slate-950 border-cyan-400 shadow-lg shadow-cyan-400/30">
+        <div className="w-[100vw] md:w-[70vw] h-[50vh]  flex flex-col items-start rounded p-3 gap-2 overflow-y-auto border bg-slate-950/40 backdrop-blur-md border-cyan-400 shadow-lg shadow-cyan-400/30">
           {messages.map((msg, index) => (
-            <ChatCard key={index} message={msg} currentUser={user}  />
+            <ChatCard key={index} message={msg} currentUser={user} />
           ))}
         </div>
 
@@ -241,7 +292,6 @@ useEffect(() => {
             onSubmit={handleSendMessage}
             className="w-full flex justify-center items-center gap-3 text-cyan-300"
           >
-          
             <input
               type="text"
               value={input}
@@ -258,10 +308,13 @@ useEffect(() => {
           </form>
         </div>
         {/* ticket history box */}
-        <div className="w-[100vw] md:w-[70vw] flex flex-col justify-center items-start font-bold gap-3 p-5 border rounded-lg bg-slate-950 border-cyan-400 shadow-lg shadow-cyan-400/30">
+        <div className="w-[100vw] md:w-[70vw] flex flex-col justify-center items-start font-bold gap-3 p-5 border rounded-lg bg-slate-950/40 backdrop-blur-md border-cyan-400 shadow-lg shadow-cyan-400/30">
           <h3 className="text-xl font-bold">Ticket History</h3>
           {ticketDetails?.history?.map((entry, index) => (
-            <div key={index} className="w-[90vw] md:w-[65vw]  text-cyan-300 p-2 border rounded-lg bg-slate-950 border-cyan-400 shadow-lg shadow-cyan-400/30">
+            <div
+              key={index}
+              className="w-[90vw] md:w-[65vw]  text-cyan-300 p-2 border rounded-lg bg-slate-950/40 backdrop-blur-md border-cyan-400 shadow-lg shadow-cyan-400/30"
+            >
               <p>
                 {entry.change} by {entry.changedBy?.name} at{" "}
                 {new Date(entry.date).toLocaleDateString("en-IN", {

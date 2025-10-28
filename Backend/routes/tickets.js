@@ -131,6 +131,7 @@ router.post("/updateticket", isloggedin, async (req, res) => {
     const updateFields = {};
     if (assignedTo) updateFields.assignedTo = assignedTo;
     if (status) updateFields.status = status;
+    if (priority) updateFields.priority = priority;
 
     try {
         const updatedTicket = await ticketmodel.findByIdAndUpdate(
@@ -150,6 +151,13 @@ router.post("/updateticket", isloggedin, async (req, res) => {
         if (status) {
             updatedTicket.history.push({
                 change: `Ticket status updated to ${status}`,
+                changedBy: req.user._id,
+                date: new Date()
+            });
+        }
+          if (priority) {
+            updatedTicket.history.push({
+                change: `Ticket priority updated to ${priority}`,
                 changedBy: req.user._id,
                 date: new Date()
             });
