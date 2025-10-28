@@ -23,8 +23,8 @@ function Profile() {
             </div>
           </div>
           <div className="details h-30 w-80 border border-cyan flex flex-col justify-center items-start p-3 md:p-10">
-            <p className="text-2xl font-bold w-70">{user?.name}</p>
-            <p className="text-s w-70">{user?.email}</p>
+            <p className="text-2xl font-bold w-70  break-words whitespace-normal">{user?.name}</p>
+            <p className="text-s w-70  break-words whitespace-normal">{user?.email}</p>
             <p className="text-xl w-70">Role : {user?.role}</p>
           </div>
           <div className="bugStatus h-35 w-80 bg- flex flex-col justify-center items-center border bg-slate-950 border-cyan-400 shadow-lg shadow-cyan-400/30">
