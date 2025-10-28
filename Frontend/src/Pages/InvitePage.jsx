@@ -1,8 +1,11 @@
 import { React, useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { useUser } from "../contextApi/UserContext";
 
 function InvitePage() {
+  
+    const { login } = useUser();
   const [inviteData, setInviteData] = useState(null);
 
   const { invitetoken } = useParams();
@@ -29,6 +32,7 @@ function InvitePage() {
 
           if (data.success) {
               localStorage.removeItem("loginToken"); 
+              login()
             toast.success(data.message);
             navigate("/dashboard");
           } else {

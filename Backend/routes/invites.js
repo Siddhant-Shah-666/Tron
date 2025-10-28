@@ -70,70 +70,55 @@ router.post("/inviteuser", isloggedin, async (req, res) => {
 });
 
 
-router.post("/checkinvites/:invitetoken", async (req, res) => {
+router.post("/checkinvites/:invitetoken", isloggedin, async (req, res) => {
   const token = req.params.invitetoken;
 
   console.log(token, "invite be token");
 
   try {
-    //finding invite 
-    const invite = await invitemodel.findOne({ token }).populate("company")
-    console.log(invite);
-    
+    // Find invite
+    const invite = await invitemodel.findOne({ token }).populate("company");
     if (!invite) {
-      return res.status(400).json({ message: "not invited" })
+      return res.status(400).json({ message: "Not invited" });
     }
 
-    //  checking user login status
-    let user = null;
-
-    let logintoken = req.cookies.token || req.body.logintoken;
-    console.log(logintoken, "login token inside checkinvite");
-    if (logintoken) {
-      let token = logintoken;
-      const decoded = Jwt.verify(token, process.env.JWT_SECRET)
-      console.log(decoded,"user decoded");
-
-      user = await usermodel.findById(decoded.id)
-      console.log(user);
-
-    }
+    const user = req.user; 
     if (!user) {
-      return res.status(401).json({ message: "please login first" })
+      return res.status(401).json({ message: "Please login first" });
     }
 
-    //check if user is already listed to company & if not then add it
-    const company = await companymodel.findById(invite.company)
-    const alreadymember = company.members.some((member) => {
-      return member.toString() === user._id.toString()
-    })
+    // Check if already in company
+    const company = await companymodel.findById(invite.company);
+    const alreadyMember = company.members.some(
+      (m) => m.toString() === user._id.toString()
+    );
 
-    if (!alreadymember) {
-      company.members.push(user._id)
-      await company.save()
+    if (!alreadyMember) {
+      company.members.push(user._id);
+      await company.save();
     }
-    //update invite status
-    invite.status = "Accepted"
+
+    // Update models
+    invite.status = "Accepted";
     await invite.save();
 
-    //update user model
-    user.role = invite.role
-    user.companyId = invite.company
-    await user.save()
-    console.log(user,"after adding role and company");
-    
+    user.role = invite.role;
+    user.companyId = invite.company;
+    await user.save();
 
-    //delete invite after use
-    await invitemodel.deleteOne({ _id: invite._id })
+    await invitemodel.deleteOne({ _id: invite._id });
 
-    res.status(200).json({ message: "invite accepted", invite, user, success: true })
-
+    res.status(200).json({
+      message: "Invite accepted",
+      invite,
+      user,
+      success: true,
+    });
   } catch (error) {
     console.error(error);
-
+    res.status(500).json({ message: "Server error" });
   }
+});
 
-
-})
 
 module.exports = router

@@ -108,7 +108,7 @@ const loginUsers = async (req, res) => {
 
 const isloggedin = async (req, res, next) => {
     try {
-        const token = req.cookies.token;
+        const token = req.cookies.token || req.body.logintoken;
         console.log("login token",token);
         
 
@@ -129,7 +129,7 @@ const isloggedin = async (req, res, next) => {
         console.error("Token verification failed:", err.message); 
         
         // Clear the bad token and send 401 status
-        res.clearCookie("token");
+        
         return res.status(401).json({ message: "Session expired or token invalid." });
     }
 }
