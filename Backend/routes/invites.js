@@ -71,13 +71,13 @@ router.post("/inviteuser", isloggedin, async (req, res) => {
 
 
 router.post("/checkinvites/:invitetoken", async (req, res) => {
-  const invitetoken = req.params.invitetoken;
+  const token = req.params.invitetoken;
 
-  console.log(invitetoken, "invite be token");
+  console.log(token, "invite be token");
 
   try {
     //finding invite 
-    const invite = await invitemodel.findOne({ invitetoken }).populate("company")
+    const invite = await invitemodel.findOne({ token }).populate("company")
     if (!invite) {
       return res.status(400).json({ message: "not invited" })
     }
@@ -85,10 +85,11 @@ router.post("/checkinvites/:invitetoken", async (req, res) => {
     //  checking user login status
     let user = null;
 
-    console.log(req.cookies.token,"login token inside checkinvite");
-  let logintoken = req.cookies.token || req.body.logintoken;
+    let logintoken = req.cookies.token || req.body.logintoken;
+    console.log(logintoken, "login token inside checkinvite");
     if (logintoken) {
-      const decoded = Jwt.verify(logintoken, "secret")
+      let token = logintoken;
+      const decoded = Jwt.verify(token, process.env.JWT_SECRET)
       console.log(decoded,);
 
       user = await usermodel.findById(decoded.id)
