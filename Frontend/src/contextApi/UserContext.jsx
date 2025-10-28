@@ -45,53 +45,45 @@ export const UserProvider = ({ children }) => {
       navigate("/");
     }
   };
+
 useEffect(() => {
-    const checkAuth = async () => {
-        setIsLoading(true); // Start loading state
+  const checkAuth = async () => {
+    try {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/users/getuser`, {
+        method: "GET",
+        credentials: "include",
+      });
 
-        try {
-            const res = await fetch(`${import.meta.env.VITE_API_URL}/users/getuser`, {
-                method: "GET",
-                credentials: "include",
-            });
+      if (!res.ok) {
+        setUser(null);
+        setIsLoggedIn(false);
+        setIsAdmin(false);
+        return;
+      }
 
-            // If status is 401 (Unauthorized) or 403, user is not logged in.
-            if (!res.ok && res.status >= 400) {
-                // Clear any existing state and stop loading
-                setUser(null);
-                setIsLoggedIn(false);
-            } else {
-                // Status is 200 (OK) or 304 (Not Modified). Proceed.
-                // NOTE: We only parse JSON if the body isn't empty (i.e., not a 304)
-                const data = (res.status !== 304 && res.status !== 204) ? await res.json() : {};
+      const data = await res.json();
+      const userData = data?.user;
 
-                // Use the data if available, otherwise assume current token is valid
-                const userData = data?.user || user; 
+      if (userData) {
+        setUser(userData);
+        setIsLoggedIn(true);
+        setIsAdmin(userData.role === "Admin");
+      } else {
+        setUser(null);
+        setIsLoggedIn(false);
+        setIsAdmin(false);
+      }
+    } catch (err) {
+      console.error("Auth check failed:", err);
+      setUser(null);
+      setIsLoggedIn(false);
+      setIsAdmin(false);
+    }
+  };
 
-                if (userData) {
-                    setUser(userData);
-                    setIsLoggedIn(true);
-                    if (userData?.role === "Admin") {
-                        setIsAdmin(true);
-                    }
-                } else {
-                    // Token exists but server sent no user data (e.g., expired token)
-                    setUser(null);
-                    setIsLoggedIn(false);
-                }
-            }
-        } catch (err) {
-            // Handle network errors or JSON parsing errors
-            console.error("Auth check failed:", err);
-            setUser(null);
-            setIsLoggedIn(false);
-        } finally {
-            setIsLoading(false); // Stop loading regardless of the outcome
-        }
-    };
-    checkAuth();
+  if (isloggedIn) checkAuth();
+}, [isloggedIn]); 
 
-}, [isloggedIn]);
 
   const login = () => {
     console.log("login triggerded");

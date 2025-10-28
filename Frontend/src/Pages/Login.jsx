@@ -40,6 +40,7 @@ function Login() {
         toast.success(data.message);
         if (invitetoken && invitetoken !== "null" && invitetoken.trim() !== "") {
           console.log("3 - Redirecting to Invite Page");
+            await new Promise(resolve => setTimeout(resolve, 500));
           navigate(`/invitepage/${invitetoken}`);
         }
         // 2. Check for a valid company ID (Dashboard access)

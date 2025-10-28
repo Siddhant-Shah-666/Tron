@@ -47,6 +47,7 @@ const registerUser = async (req, res) => {
   httpOnly: true,
   secure: true,
   sameSite: "None",
+  path: "/",
 }).status(201).json({ message: "User created successfully...!", token, success: true })
 
 
@@ -89,6 +90,7 @@ const loginUsers = async (req, res) => {
   httpOnly: true,
   secure: true,
   sameSite: "None",
+  path: "/",
 }).status(201).json({ message: "login success", token, success: true, companyId: user.companyId })
 
       }
