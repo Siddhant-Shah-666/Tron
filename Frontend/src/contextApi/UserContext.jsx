@@ -81,7 +81,7 @@ useEffect(() => {
     }
   };
 
-  if (isloggedIn) checkAuth();
+  checkAuth();
 }, [isloggedIn]); 
 
 

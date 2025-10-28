@@ -4,8 +4,7 @@ import { toast } from "react-toastify";
 import { useUser } from "../contextApi/UserContext";
 
 function InvitePage() {
-  
-    const { login } = useUser();
+  const { login } = useUser();
   const [inviteData, setInviteData] = useState(null);
 
   const { invitetoken } = useParams();
@@ -16,12 +15,17 @@ function InvitePage() {
   useEffect(() => {
     const checkInvite = async () => {
       try {
-       const res = await fetch(`${import.meta.env.VITE_API_URL}/invites/checkinvites/${invitetoken}`, {
-  method: "POST",
-  credentials: "include",
-  headers: { "content-type": "application/json" },
-   body: JSON.stringify({ logintoken: localStorage.getItem("loginToken") })
-});
+        const res = await fetch(
+          `${import.meta.env.VITE_API_URL}/invites/checkinvites/${invitetoken}`,
+          {
+            method: "POST",
+            credentials: "include",
+            headers: { "content-type": "application/json" },
+            body: JSON.stringify({
+              logintoken: localStorage.getItem("loginToken"),
+            }),
+          }
+        );
 
         if (res.status == 401) {
           // localStorage.setItem("invitetoken", invitetoken);
@@ -31,8 +35,8 @@ function InvitePage() {
           setInviteData(data.invite);
 
           if (data.success) {
-              localStorage.removeItem("loginToken"); 
-              login()
+            localStorage.removeItem("loginToken");
+            login();
             toast.success(data.message);
             navigate("/dashboard");
           } else {
@@ -44,12 +48,12 @@ function InvitePage() {
         console.error(err);
       }
     };
-   const timer = setTimeout(() => {
-        if (invitetoken) {
-            checkInvite();
-        }
+    const timer = setTimeout(() => {
+      if (invitetoken) {
+        checkInvite();
+      }
     }, 150);
-    
+
     return () => clearTimeout(timer);
   }, [invitetoken]);
   return <></>;
