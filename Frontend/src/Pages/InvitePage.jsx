@@ -13,8 +13,7 @@ function InvitePage() {
   useEffect(() => {
     const checkInvite = async () => {
       try {
-        const res = await fetch(
-          `${import.meta.env.VITE_API_URL}/invites/checkinvites/${invitetoken}`,
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/invites/checkinvites/${invitetoken}`,
           {
             method: "POST",
             credentials: "include",
@@ -24,7 +23,7 @@ function InvitePage() {
           }
         );
         if (res.status == 401) {
-          localStorage.setItem("invitetoken", invitetoken);
+          // localStorage.setItem("invitetoken", invitetoken);
           navigate(`/?invitetoken=${invitetoken}`); //redirectin to login
         } else {
           const data = await res.json();

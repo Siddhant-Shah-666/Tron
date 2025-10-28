@@ -107,6 +107,8 @@ const loginUsers = async (req, res) => {
 const isloggedin = async (req, res, next) => {
     try {
         const token = req.cookies.token;
+        console.log("login token",token);
+        
 
         if (!token) {
             
