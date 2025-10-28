@@ -37,15 +37,14 @@ function Login() {
 
       if (data.success) {
         login();
+         await Promise.resolve(localStorage.setItem("loginToken", data.token));
         toast.success(data.message);
         if (invitetoken && invitetoken !== "null" && invitetoken.trim() !== "") {
-
-              const verify = await fetch(`${import.meta.env.VITE_API_URL}/users/getuser`, { credentials: "include" });
-         if(verify.ok){
+          console.log("3 - Redirecting to Invite Page");
           navigate(`/invitepage/${invitetoken}`);
         }
         // 2. Check for a valid company ID (Dashboard access)
-        }else if (data.companyId) {
+        else if (data.companyId) {
           console.log("1 - Redirecting to Dashboard");
           navigate("/dashboard");
         }

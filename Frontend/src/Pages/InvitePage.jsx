@@ -17,6 +17,7 @@ function InvitePage() {
   method: "POST",
   credentials: "include",
   headers: { "content-type": "application/json" },
+   body: JSON.stringify({ token: localStorage.getItem("token") })
 });
 
         if (res.status == 401) {
@@ -27,6 +28,7 @@ function InvitePage() {
           setInviteData(data.invite);
 
           if (data.success) {
+              localStorage.removeItem("token"); 
             toast.success(data.message);
             navigate("/dashboard");
           } else {

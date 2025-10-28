@@ -84,10 +84,10 @@ router.post("/checkinvites/:invitetoken", async (req, res) => {
 
     //  checking user login status
     let user = null;
-    
-    console.log(req.cookies.token,"login token inside checkinvite");
 
-    if (req.cookies.token) {
+    console.log(req.cookies.token,"login token inside checkinvite");
+  let token = req.cookies.token || req.body.token;
+    if (token) {
       const decoded = Jwt.verify(req.cookies.token, "secret")
       console.log(decoded,);
 
