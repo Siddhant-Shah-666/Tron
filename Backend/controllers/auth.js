@@ -46,8 +46,8 @@ const registerUser = async (req, res) => {
     res.cookie("token", token, {
   httpOnly: true,
   secure: true,
-  sameSite: "none",
-}).status(201).json({ message: "user created", token, success: true })
+  sameSite: "None",
+}).status(201).json({ message: "User created successfully...!", token, success: true })
 
 
   } catch (err) {
@@ -74,7 +74,7 @@ const loginUsers = async (req, res) => {
     let user = await Usermodel.findOne({ email });
     console.log(user);
     if (!user) {
-      return res.status(400).json({ message: "email not found" })
+      return res.status(400).json({ message: "Email not found" })
     }
     bcrypt.compare(password, user.password, (err, result) => {
       if (err) {
@@ -84,11 +84,11 @@ const loginUsers = async (req, res) => {
         return res.status(400).json({ message: "password not match , u fraud" })
       }
       else {
-        const token = jwt.sign({ id: user._id }, "secret");
+        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
        res.cookie("token", token, {
   httpOnly: true,
   secure: true,
-  sameSite: "none",
+  sameSite: "None",
 }).status(201).json({ message: "login success", token, success: true, companyId: user.companyId })
 
       }

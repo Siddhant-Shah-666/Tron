@@ -84,11 +84,12 @@ router.post("/checkinvites/:invitetoken", async (req, res) => {
 
     //  checking user login status
     let user = null;
-    // console.log(req.cookies.token);
+    
+    console.log(req.cookies.token,"login token inside checkinvite");
 
     if (req.cookies.token) {
       const decoded = Jwt.verify(req.cookies.token, "secret")
-      console.log(decoded);
+      console.log(decoded,);
 
       user = await usermodel.findById(decoded.id)
       console.log(user);
