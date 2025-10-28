@@ -78,6 +78,8 @@ router.post("/checkinvites/:invitetoken", async (req, res) => {
   try {
     //finding invite 
     const invite = await invitemodel.findOne({ token }).populate("company")
+    console.log(invite);
+    
     if (!invite) {
       return res.status(400).json({ message: "not invited" })
     }
@@ -90,7 +92,7 @@ router.post("/checkinvites/:invitetoken", async (req, res) => {
     if (logintoken) {
       let token = logintoken;
       const decoded = Jwt.verify(token, process.env.JWT_SECRET)
-      console.log(decoded,);
+      console.log(decoded,"user decoded");
 
       user = await usermodel.findById(decoded.id)
       console.log(user);
@@ -118,6 +120,8 @@ router.post("/checkinvites/:invitetoken", async (req, res) => {
     user.role = invite.role
     user.companyId = invite.company
     await user.save()
+    console.log(user,"after adding role and company");
+    
 
     //delete invite after use
     await invitemodel.deleteOne({ _id: invite._id })
