@@ -73,7 +73,7 @@ router.post("/inviteuser", isloggedin, async (req, res) => {
 router.post("/checkinvites/:invitetoken", async (req, res) => {
   const invitetoken = req.params.invitetoken;
 
-  console.log(token, "invite be token");
+  console.log(invitetoken, "invite be token");
 
   try {
     //finding invite 
