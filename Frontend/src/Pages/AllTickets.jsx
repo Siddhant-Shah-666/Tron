@@ -269,7 +269,7 @@ function AllTickets() {
                    <button
                   type="button"
                   onClick={dropProject}
-                  className="bg-blue-500 text-red-600 hover:text-white  h-[4vh] md:h-[5vh]  w-[30vw] md:w-[8vw]  rounded-xl hover:bg-red-500 border  border-red-400 shadow-md shadow-red-400/30"
+                  className=" text-red-600 hover:text-white  h-[4vh] md:h-[5vh]  w-[30vw] md:w-[8vw]  rounded-xl hover:bg-red-500 border  border-red-400 shadow-md shadow-red-400/30"
                 >
                   Drop
                 </button>

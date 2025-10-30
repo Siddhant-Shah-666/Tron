@@ -13,7 +13,7 @@ function Profile() {
         <div className="h-125 w-80   rounded-xl    md:mt-5    border bg-slate-950 border-cyan-400 
       shadow-lg shadow-cyan-400/30">
           <div className="img h-50 w-80  relative flex justify-center items-center rounded-xl">
-            <div className="pic  h-50 w-70 bg-blue-300 rounded-xl absolute top-[-5vh]   border bg-slate-950 border-cyan-400 shadow-lg shadow-cyan-400/30">
+            <div className="pic  h-45 w-70 bg-blue-300 rounded-xl absolute top-[-5vh]   border bg-slate-950 border-cyan-400 shadow-lg shadow-cyan-400/30">
              <img
                 // src={`${import.meta.env.VITE_API_URL}/uploads/${user?.image}`}
                 src={user?.image}
