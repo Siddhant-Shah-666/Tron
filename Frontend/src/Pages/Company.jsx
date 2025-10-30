@@ -31,9 +31,9 @@ function Company() {
 
   return (
     <>
-      <div className=" w-[100vw] md:w-[80vw] flex flex-col justify-center items-center text-white p-2 md:p-5  md:gap-2 relative">
+      <div className=" w-[100vw] md:w-[80vw] flex flex-col justify-center items-center text-white  md:p-5  md:gap-2 relative">
         {/* company card */}
-        <div className="h-[20vh] w-[95vw] md:h-[40vh]  md:w-[75vw]  rounded-xl flex  mt-3 md:mt-0">
+        <div className="h-[20vh] w-[100vw] md:h-[40vh]  md:w-[75vw]  rounded-xl flex  mt-3 md:mt-0">
           <div className="img h-[20vh] w-[40vw] md:h-[40vh]  md:w-[20vw]  relative flex  justify-center items-center rounded-xl relative">
            <div className="pic  h-[20vh] w-[40vw] md:h-[40vh]  md:w-[20vw] absolute left-3 rounded-xl        border bg-slate-950 border-cyan-400 text-cyan-300 
       shadow-lg shadow-cyan-400/30">

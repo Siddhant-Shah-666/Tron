@@ -185,7 +185,7 @@ function ViewTickets() {
 
     const data = await res.json();
     if (data.success) {
-      // navigate(-1);
+      navigate(-1);
       toast.success(data.message);
     } else toast.error(data.message);
 
@@ -219,8 +219,8 @@ function ViewTickets() {
                 )}
 
                 {isAdmin && (
-                  <div className=" w-full flex ">
-                    <span className="text-xl ">Developer : </span>
+                  <div className=" w-full flex gap-1 ">
+                    <span className="text-xl md:mr-2 ">Developer : </span>
                     <select
                       name="assignedTo"
                       value={formData.assignedTo}
@@ -288,17 +288,17 @@ function ViewTickets() {
                 </div>
 
               
-                <div className="action w-full flex gap-4">
+                <div className="action w-full flex justify-center gap-2 md:gap-4">
                    <button
                   type="submit"
-                  className="bg-blue-500 text-white  h-[4vh]  w-[60vw] md:w-[15vw] ml-[10vw] md:ml-0 rounded-xl hover:bg-cyan-400 border bg-cyan-800 border-cyan-400 shadow-md shadow-cyan-400/30"
+                  className="bg-blue-500 text-white  h-[4vh] md:h-[5vh] w-[60vw] md:w-[15vw] rounded-xl hover:bg-cyan-400 border bg-cyan-800 border-cyan-400 shadow-md shadow-cyan-400/30"
                 >
                   Update
                 </button>
                    <button
                   type="button"
                   onClick={dropTicket}
-                  className="bg-blue-500 text-red-600 hover:text-white  h-[4vh]  w-[20vw] md:w-[8vw] ml-[10vw] md:ml-0 rounded-xl hover:bg-red-400 border bg-slate-800 border-red-400 shadow-md shadow-red-400/30"
+                  className="bg-blue-500 text-red-600 hover:text-white  h-[4vh] md:h-[5vh]   w-[20vw] md:w-[8vw]  rounded-xl hover:bg-red-500 border bg-slate-950 border-red-400 shadow-md shadow-red-400/30"
                 >
                   Drop
                 </button>
@@ -317,7 +317,7 @@ function ViewTickets() {
         </div>
 
         {/* Input Form */}
-        <div className="w-[95vw] md:w-[70vw] h-[10vh]  flex justify-center rounded-[50%] items-center border bg-slate-950/40 backdrop-blur-md border-cyan-400 shadow-lg shadow-cyan-400/30">
+        <div className="w-[95vw] md:w-[70vw] h-[10vh]  flex justify-center rounded-lg items-center border bg-slate-950/40 backdrop-blur-md border-cyan-400 shadow-lg shadow-cyan-400/30">
           <form
             onSubmit={handleSendMessage}
             className="w-full flex justify-center items-center gap-3 text-cyan-300"

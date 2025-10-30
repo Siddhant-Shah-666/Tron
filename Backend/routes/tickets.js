@@ -191,7 +191,7 @@ router.post("/dropticket",isloggedin,async(req,res)=>{
     const {ticketId} = req.body;
     try{
 
-    const Deltic = await ticketmodel.findByIdAndDelete({ticketId});
+    const Deltic = await ticketmodel.findByIdAndDelete(ticketId);
         res.status(200).json({
             message: "Ticket Dropped successfully",
             

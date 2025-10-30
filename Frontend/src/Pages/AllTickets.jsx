@@ -259,17 +259,17 @@ function AllTickets() {
 
                   
                 </div>
-                <div className="action w-full flex gap-4">
+                <div className="action w-full flex justify-center gap-2 md:gap-4">
                    <button
                   type="submit"
-                  className="bg-blue-500 text-white  h-[4vh]  w-[60vw] md:w-[15vw] ml-[10vw] md:ml-0 rounded-xl hover:bg-cyan-400 border bg-cyan-800 border-cyan-400 shadow-md shadow-cyan-400/30"
+                  className="bg-blue-500 text-white  h-[4vh] md:h-[5vh]  w-[60vw] md:w-[15vw]  rounded-xl hover:bg-cyan-400 border bg-cyan-800 border-cyan-400 shadow-md shadow-cyan-400/30"
                 >
                   Update
                 </button>
                    <button
                   type="button"
                   onClick={dropProject}
-                  className="bg-blue-500 text-red-600 hover:text-white  h-[4vh]  w-[20vw] md:w-[8vw] ml-[10vw] md:ml-0 rounded-xl hover:bg-red-400 border bg-slate-800 border-red-400 shadow-md shadow-red-400/30"
+                  className="bg-blue-500 text-red-600 hover:text-white  h-[4vh] md:h-[5vh]  w-[20vw] md:w-[8vw]  rounded-xl hover:bg-red-500 border bg-slate-950 border-red-400 shadow-md shadow-red-400/30"
                 >
                   Drop
                 </button>
