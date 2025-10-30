@@ -31,7 +31,7 @@ function Company() {
 
   return (
     <>
-      <div className=" w-[100vw] md:w-[80vw] flex flex-col justify-center items-center text-white  md:p-5  md:gap-2 relative">
+      <div className=" w-[100vw] md:w-[80vw] flex flex-col justify-center items-center text-white  md:p-5  md:gap-2 relative md:left-[5vw]">
         {/* company card */}
         <div className="h-[20vh] w-[100vw] md:h-[40vh]  md:w-[75vw]  rounded-xl flex  mt-3 md:mt-0">
           <div className="img h-[20vh] w-[40vw] md:h-[40vh]  md:w-[20vw]  relative flex  justify-center items-center rounded-xl relative">

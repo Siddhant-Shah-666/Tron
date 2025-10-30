@@ -199,7 +199,7 @@ function ViewTickets() {
           <div className=" w-[100vw] md:w-[70vw]  flex flex-col justify-center items-start rounded font-bold p-3 gap-2 border bg-slate-950/40 backdrop-blur-md border-cyan-400 shadow-lg shadow-cyan-400/30 text-cyan-400 ">
             <p className="text-xl">Project : {ticketDetails?.project?.name}</p>
             <p className="text-2xl font-semibold">
-              Ticket : {ticketDetails?.name}
+              Ticket "("{ticketDetails?.ticketType}")" : {ticketDetails?.name}
             </p>
             <p>Info : {ticketDetails?.message}</p>
             <p className="text-xl">
@@ -298,7 +298,7 @@ function ViewTickets() {
                    <button
                   type="button"
                   onClick={dropTicket}
-                  className="bg-blue-500 text-red-600 hover:text-white  h-[4vh] md:h-[5vh]   w-[20vw] md:w-[8vw]  rounded-xl hover:bg-red-500 border bg-slate-950 border-red-400 shadow-md shadow-red-400/30"
+                  className="bg-blue-500 text-red-600 hover:text-white  h-[4vh] md:h-[5vh]   w-[30vw] md:w-[8vw]  rounded-xl hover:bg-red-500 border bg-slate-950 border-red-400 shadow-md shadow-red-400/30"
                 >
                   Drop
                 </button>
