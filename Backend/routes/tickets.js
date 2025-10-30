@@ -162,7 +162,7 @@ router.post("/updateticket", isloggedin, async (req, res) => {
                 date: new Date()
             });
         }
-        const user =await usermodel.findById({assignedTo})
+        const user =await usermodel.findById(assignedTo)
         if (user) {
             updatedTicket.history.push({
                 change: `Ticket assigned to user ${user.name}`,

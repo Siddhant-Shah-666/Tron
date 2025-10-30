@@ -68,7 +68,7 @@ function NameCard({ key, member }) {
       shadow-lg shadow-cyan-400/30"
         >
           <p className="md:text-2xl font-semibold">{member.name}</p>
-          <p className="text-xs w-[40vw] md:w-[20vw]  overflow-hidden text-ellipsis ">{member.email}</p>
+          <p className="text-xs w-[40vw] md:w-[20vw] h-auto overflow-hidden text-ellipsis ">{member.email}</p>
           <div className="role ">
             <form action="" onSubmit={handleSubmit}>
               {!isAdmin && (
@@ -101,7 +101,7 @@ function NameCard({ key, member }) {
                   </select>
                   <button
                     type="submit"
-                    className="bg-blue-500 text-white md:p-1 h-[4vh] w-[40vw] md:h-[5vh] md:w-[17vw] rounded-xl text-center border bg-cyan-800 border-cyan-400 shadow-lg shadow-cyan-400/30"
+                    className="bg-blue-500 text-white md:p-1 h-[3.5vh] w-[40vw] md:h-[5vh] md:w-[17vw] rounded-xl text-center border bg-cyan-800 border-cyan-400 shadow-lg shadow-cyan-400/30"
                   >
                     Update
                   </button>

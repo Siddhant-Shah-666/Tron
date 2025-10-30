@@ -288,7 +288,7 @@ function ViewTickets() {
                 </div>
 
               
-                <div className="action w-full flex justify-center gap-2 md:gap-4">
+                <div className="action w-full flex md:justify-start justify-center gap-2 md:gap-4">
                    <button
                   type="submit"
                   className="bg-blue-500 text-white  h-[4vh] md:h-[5vh] w-[60vw] md:w-[15vw] rounded-xl hover:bg-cyan-400 border bg-cyan-800 border-cyan-400 shadow-md shadow-cyan-400/30"
