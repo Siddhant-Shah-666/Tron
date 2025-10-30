@@ -120,6 +120,23 @@ router.get("/getproject", isloggedin, async (req, res) => {
         console.error(err);
 
     }
-})
+});
+
+router.post("/dropproject",isloggedin,async(req,res)=>{
+    const {projectId} = req.body;
+    try{
+
+    const Deltic = await projectModel.findByIdAndDelete({projectId});
+        res.status(200).json({
+            message: "Project Dropped successfully",
+            
+            success: true
+        });
+    }catch(err){
+        console.error(err);
+        
+    }
+
+});
 
 module.exports = router;

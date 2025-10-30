@@ -4,7 +4,7 @@ import icon from "../../assets/icon.png"
 function StatsCard(props) {
   return (
     <div className='
-      h-[15vh] w-[40vw] md:h-[15vh] md:w-[17vw] 
+      h-[12vh] w-[40vw] md:h-[15vh] md:w-[17vw] 
       rounded-xl flex flex-col justify-start md:justify-center items-start  p-3
       md:p-5 md:p-5 gap-y-1 md:gap-y-2 relative 
       

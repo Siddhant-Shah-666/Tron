@@ -3,7 +3,7 @@ const router = express.Router();
 const ticketmodel = require("../models/ticketModel");
 const { isloggedin } = require("../controllers/auth");
 const projectModel = require("../models/projectModel");
-const ticketModel = require("../models/ticketModel");
+// const ticketModel = require("../models/ticketModel");
 const companyModel = require("../models/companyModel");
 const usermodel = require("../models/userModel")
 
@@ -72,7 +72,7 @@ router.get('/gettickets/bypro/:projectId', isloggedin, async (req, res) => {
     const userId = req.user._id
 
     try {
-        const tickets = await ticketModel.find({ project: req.params.projectId }).populate("reportedBy").populate("assignedTo");
+        const tickets = await ticketmodel.find({ project: req.params.projectId }).populate("reportedBy").populate("assignedTo");
 
         res.status(200).json({ tickets, message: "tickets fetched successfully" ,userId})
     } catch (err) {
@@ -162,7 +162,7 @@ router.post("/updateticket", isloggedin, async (req, res) => {
                 date: new Date()
             });
         }
-        const user = usermodel.findById({assignedTo})
+        const user =await usermodel.findById({assignedTo})
         if (user) {
             updatedTicket.history.push({
                 change: `Ticket assigned to user ${user.name}`,
@@ -186,6 +186,23 @@ router.post("/updateticket", isloggedin, async (req, res) => {
         res.status(500).json({ error: "Internal server error" });
     }
 });
+
+router.post("/dropticket",isloggedin,async(req,res)=>{
+    const {ticketId} = req.body;
+    try{
+
+    const Deltic = await ticketmodel.findByIdAndDelete({ticketId});
+        res.status(200).json({
+            message: "Ticket Dropped successfully",
+            
+            success: true
+        });
+    }catch(err){
+        console.error(err);
+        
+    }
+
+})
 
 
 module.exports = router

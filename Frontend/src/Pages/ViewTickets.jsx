@@ -169,6 +169,28 @@ function ViewTickets() {
     fetchticket();
   }, []);
 
+  const dropTicket =async()=>{
+    
+   const res = await fetch(
+      `${import.meta.env.VITE_API_URL}/tickets/dropticket`,
+      {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({ticketId}),
+      }
+    );
+
+    const data = await res.json();
+    if (data.success) {
+      // navigate(-1);
+      toast.success(data.message);
+    } else toast.error(data.message);
+
+  }
+
   return (
     <>
       <div className="w-[100vw] md:w-[80vw]  flex flex-col justify-center items-center text-white p-5 gap-5 ">
@@ -197,13 +219,13 @@ function ViewTickets() {
                 )}
 
                 {isAdmin && (
-                  <>
-                    <span className="text-xl">Developer : </span>
+                  <div className=" w-full flex ">
+                    <span className="text-xl ">Developer : </span>
                     <select
                       name="assignedTo"
                       value={formData.assignedTo}
                       onChange={handleChange}
-                      className="border border-cyan-300 rounded-lg p-2 mb-2  w-[60vw] md:w-[15vw]"
+                      className="border border-cyan-300 rounded-lg p-2 mb-2  w-[40vw] md:w-[15vw]"
                     >
                       <option className="bg-slate-800" value="">
                         {ticketDetails?.assignedTo?.name}
@@ -215,7 +237,7 @@ function ViewTickets() {
                           </option>
                         ))}
                     </select>
-                  </>
+                  </div>
                 )}
                 <div className="StatusAndPriorityAndUpdate flex  gap-3 ">
                   <span className="md:text-xl ">Priority : </span>
@@ -266,13 +288,22 @@ function ViewTickets() {
                 </div>
 
               
-                
-                <button
+                <div className="action w-full flex gap-4">
+                   <button
                   type="submit"
-                  className="bg-blue-500 text-white  h-[5vh]  w-[80vw] md:w-[8vw] ml-[10vw] md:ml-0 rounded-xl hover:bg-cyan-400 border bg-cyan-800 border-cyan-400 shadow-md shadow-cyan-400/30"
+                  className="bg-blue-500 text-white  h-[4vh]  w-[60vw] md:w-[15vw] ml-[10vw] md:ml-0 rounded-xl hover:bg-cyan-400 border bg-cyan-800 border-cyan-400 shadow-md shadow-cyan-400/30"
                 >
                   Update
                 </button>
+                   <button
+                  type="button"
+                  onClick={dropTicket}
+                  className="bg-blue-500 text-red-600 hover:text-white  h-[4vh]  w-[20vw] md:w-[8vw] ml-[10vw] md:ml-0 rounded-xl hover:bg-red-400 border bg-slate-800 border-red-400 shadow-md shadow-red-400/30"
+                >
+                  Drop
+                </button>
+                </div>
+               
               </form>
             </div>
           </div>
@@ -286,7 +317,7 @@ function ViewTickets() {
         </div>
 
         {/* Input Form */}
-        <div className="w-[100vw] md:w-[70vw] h-[10vh]  flex justify-center rounded items-center border bg-slate-950 border-cyan-400 shadow-lg shadow-cyan-400/30">
+        <div className="w-[95vw] md:w-[70vw] h-[10vh]  flex justify-center rounded-[50%] items-center border bg-slate-950/40 backdrop-blur-md border-cyan-400 shadow-lg shadow-cyan-400/30">
           <form
             onSubmit={handleSendMessage}
             className="w-full flex justify-center items-center gap-3 text-cyan-300"

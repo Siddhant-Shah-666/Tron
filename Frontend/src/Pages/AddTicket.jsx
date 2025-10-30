@@ -58,7 +58,7 @@ function AddTicket() {
   return (
     <>
       <div className="h-[90vh] md:h-[80vh]  flex  justify-center items-center">
-        <div className="flex flex-col justify-center items-center   w-[8 w-[60vw] md:0vw] md:w-[30vw] rounded p-5  border bg-slate-950 border-cyan-400 shadow-lg shadow-cyan-400/30 font-bold">
+        <div className="flex flex-col justify-center items-center    w-[80vw] md:w-[30vw] rounded p-5  border bg-slate-950 border-cyan-400 shadow-lg shadow-cyan-400/30 font-bold">
           <form
             action=""
             onSubmit={handleSubmit}
