@@ -141,7 +141,7 @@ function AllTickets() {
    const dropProject =async()=>{
       
      const res = await fetch(
-        `${import.meta.env.VITE_API_URL}/tickets/dropproject`,
+        `${import.meta.env.VITE_API_URL}/projects/dropproject`,
         {
           method: "POST",
           credentials: "include",
@@ -154,8 +154,9 @@ function AllTickets() {
   
       const data = await res.json();
       if (data.success) {
-        navigate(-1);
+       
         toast.success(data.message);
+         navigate(-1);
       } else toast.error(data.message);
   
     }

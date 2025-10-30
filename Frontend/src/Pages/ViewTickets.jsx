@@ -185,8 +185,9 @@ function ViewTickets() {
 
     const data = await res.json();
     if (data.success) {
-      navigate(-1);
+      
       toast.success(data.message);
+       navigate(-1);
     } else toast.error(data.message);
 
   }
