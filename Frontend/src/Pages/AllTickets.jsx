@@ -164,7 +164,7 @@ function AllTickets() {
     <>
       <div className="w-full   md:w-[80vw] bg-blue-00 flex flex-col  justify-start md:items-center text-white">
         {projectId && (
-          <div className="w-[100vw] md:w-[75vw]  flex flex-col justify-center items-start rounded font-bold p-3 gap-2 border bg-slate-950 border-cyan-400 shadow-lg shadow-cyan-400/30 text-cyan-400 ">
+          <div className="w-[100vw] md:w-[75vw]  flex flex-col justify-center items-start rounded font-bold p-3 gap-2 border bg-slate-950/40 backdrop-blur-md  border-cyan-400 shadow-lg shadow-cyan-400/30 text-cyan-400 ">
             <p className="text-xl">Project : {project?.name}</p>
             {/* <p className="text-2xl font-semibold">
               Ticket : {ticketDetai?.name}
@@ -269,7 +269,7 @@ function AllTickets() {
                    <button
                   type="button"
                   onClick={dropProject}
-                  className="bg-blue-500 text-red-600 hover:text-white  h-[4vh] md:h-[5vh]  w-[30vw] md:w-[8vw]  rounded-xl hover:bg-red-500 border bg-slate-950 border-red-400 shadow-md shadow-red-400/30"
+                  className="bg-blue-500 text-red-600 hover:text-white  h-[4vh] md:h-[5vh]  w-[30vw] md:w-[8vw]  rounded-xl hover:bg-red-500 border  border-red-400 shadow-md shadow-red-400/30"
                 >
                   Drop
                 </button>
