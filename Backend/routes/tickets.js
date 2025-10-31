@@ -122,69 +122,86 @@ router.get('/gettickets/bycom/:companyId', isloggedin, async (req, res) => {
 })
 
 router.post("/updateticket", isloggedin, async (req, res) => {
-    const { ticketid, assignedTo, status, priority } = req.body;
+  const { ticketid, assignedTo, oldAssignedTo, status, priority } = req.body;
 
-    if (!ticketid) {
-        return res.status(400).json({ error: "Ticket ID is required" });
+  if (!ticketid) {
+    return res.status(400).json({ error: "Ticket ID is required" });
+  }
+
+  const updateFields = {};
+  if (assignedTo) updateFields.assignedTo = assignedTo;
+  if (status) updateFields.status = status;
+  if (priority) updateFields.priority = priority;
+
+  try {
+    const updatedTicket = await ticketmodel.findByIdAndUpdate(
+      ticketid,
+      updateFields,
+      { new: true }
+    );
+
+    if (!updatedTicket) {
+      return res.status(404).json({ error: "Ticket not found" });
     }
 
-    const updateFields = {};
-    if (assignedTo) updateFields.assignedTo = assignedTo;
-    if (status) updateFields.status = status;
-    if (priority) updateFields.priority = priority;
-
-    try {
-        const updatedTicket = await ticketmodel.findByIdAndUpdate(
-            ticketid,
-            updateFields,
-            { new: true }
-        );
-
-        if (assignedTo && assignedTo !== null) {
-            await usermodel.findByIdAndUpdate(
-                assignedTo,
-                { $addToSet: { assignedTickets: ticketid } },
-                { new: true }
-            );
-        }
-
-        if (status) {
-            updatedTicket.history.push({
-                change: `Ticket status updated to ${status}`,
-                changedBy: req.user._id,
-                date: new Date()
-            });
-        }
-          if (priority) {
-            updatedTicket.history.push({
-                change: `Ticket priority updated to ${priority}`,
-                changedBy: req.user._id,
-                date: new Date()
-            });
-        }
-        const user =await usermodel.findById(assignedTo)
-        if (user) {
-            updatedTicket.history.push({
-                change: `Ticket assigned to user ${user.name}`,
-                changedBy: req.user._id,
-                date: new Date()
-            });
-        }
-        await updatedTicket.save();
-
-        if (!updatedTicket) {
-            return res.status(404).json({ error: "Ticket not found" });
-        }
-
-        res.status(200).json({
-            message: "Ticket updated successfully",
-            ticket: updatedTicket,
-            success: true
-        });
-    } catch (err) {
-        console.error("Update error:", err);
-        res.status(500).json({ error: "Internal server error" });
+    //  Remove ticket from previously assigned user list if reassigned
+    if (
+      oldAssignedTo &&
+      assignedTo &&
+      oldAssignedTo.toString() !== assignedTo.toString()
+    ) {
+      await usermodel.findByIdAndUpdate(oldAssignedTo, {
+        $pull: { assignedTickets: ticketid },
+      });
     }
+
+    // Add to new user assignedTickets
+    if (assignedTo && assignedTo !== null) {
+      await usermodel.findByIdAndUpdate(
+        assignedTo,
+        { $addToSet: { assignedTickets: ticketid } },
+        { new: true }
+      );
+    }
+
+    // Maintain history
+    if (status) {
+      updatedTicket.history.push({
+        change: `Ticket status updated to ${status}`,
+        changedBy: req.user._id,
+        date: new Date(),
+      });
+    }
+
+    if (priority) {
+      updatedTicket.history.push({
+        change: `Ticket priority updated to ${priority}`,
+        changedBy: req.user._id,
+        date: new Date(),
+      });
+    }
+
+    if (assignedTo) {
+        
+    const user = await usermodel.findById(assignedTo);
+      updatedTicket.history.push({
+        change: `Ticket assigned to user ${user.name}`,
+        changedBy: req.user._id,
+        date: new Date(),
+      });
+    }
+
+    await updatedTicket.save();
+
+    res.status(200).json({
+      message: "Ticket updated successfully",
+      ticket: updatedTicket,
+      success: true,
+    });
+  } catch (err) {
+    console.error("Update error:", err);
+    res.status(500).json({ error: "Internal server error" });
+  }
 });
 
 router.post("/dropticket",isloggedin,async(req,res)=>{

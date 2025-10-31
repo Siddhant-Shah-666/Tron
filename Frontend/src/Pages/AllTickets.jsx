@@ -5,8 +5,10 @@ import Tickets from "../Components/Tickets";
 import { useParams } from "react-router-dom";
 import { useUser } from "../contextApi/UserContext";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 function AllTickets() {
+  const navigate = useNavigate();
   const { isAdmin } = useUser();
   const { projectId, companyId } = useParams();
 

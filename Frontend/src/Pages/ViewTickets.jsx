@@ -2,11 +2,13 @@ import { React, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useUser } from "../contextApi/UserContext";
+import { useNavigate } from "react-router-dom";
 
 import ChatCard from "../Components/ChatCard";
 import io from "socket.io-client";
 
 function ViewTickets() {
+ const navigate = useNavigate();
   const { isAdmin } = useUser();
   const { ticketId } = useParams();
 
@@ -120,7 +122,13 @@ function ViewTickets() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("form data :", formData);
+    
+  const payload = {
+    ...formData,
+    oldAssignedTo: ticketDetails?.assignedTo?._id || null, // current assigned user
+  };
+
+  console.log("Update Ticket Payload:", payload);
 
     const res = await fetch(
       `${import.meta.env.VITE_API_URL}/tickets/updateticket`,
@@ -130,7 +138,7 @@ function ViewTickets() {
         headers: {
           "content-type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(payload),
       }
     );
 
