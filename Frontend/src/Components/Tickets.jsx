@@ -22,7 +22,7 @@ function Tickets({ tickets,mytask = true }) {
             </h3>
           </div>
            <h3 className='md:text-l'>Assigned To : {ticket?.assignedTo?.name}</h3>
-        <Link to={`/viewtickets/${ticket?._id}`}><button className='h-[4vh] w-[80vw] md:w-[25vw]  rounded-xl text-white rounded hover:bg-cyan-500 border bg-cyan-800  border-cyan-400 shadow-lg shadow-cyan-400/30'>View</button></Link>
+        <Link to={`/viewtickets/${ticket?._id}`}><button className='h-[4vh] md:h-[5vh] w-[80vw] md:w-[22vw]  rounded-xl text-white rounded hover:bg-cyan-500 border bg-cyan-800  border-cyan-400 shadow-lg shadow-cyan-400/30'>View</button></Link>
         </div>
       ))}
     </>
