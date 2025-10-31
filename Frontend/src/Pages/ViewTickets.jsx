@@ -241,7 +241,7 @@ function ViewTickets() {
                       </option>
                       {members &&
                         members.map((member) => (
-                          <option key={member?._id} value={member?._id}>
+                          <option className="bg-slate-800" key={member?._id} value={member?._id}>
                             {member?.name}
                           </option>
                         ))}
