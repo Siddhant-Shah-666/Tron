@@ -46,12 +46,12 @@ function NameCard({ key, member }) {
       {/* <div className="h-[80vh] w-[80vw] bg-blue-400 flex justify-center items-center text-white"> */}
       <div
         key={key}
-        className="h-[16vh] w-[70vw] md:h-35 md:w-[30vw] bg-red-500 rounded-xl flex       border bg-slate-950 border-cyan-400 text-cyan-300 
+        className="h-[16vh] w-[70vw] md:h-[20vh] md:w-[30vw] bg-red-500 rounded-xl flex       border bg-slate-950 border-cyan-400 text-cyan-300 
       shadow-lg shadow-cyan-400/30"
       >
-        <div className="img h-[16vh] w-[20vw] md:h-35 md:w-[10vw]  relative flex justify-center items-center rounded-xl">
+        <div className="img h-[16vh] w-[20vw] md:h-[20vh] md:w-[10vw]  relative flex justify-center items-center rounded-xl">
           <div
-            className="pic h-[14vh] w-[20vw] md:h-30 md:w-[10vw]  rounded-xl absolute left-[-3vw] md:left-[-1vw]       border bg-slate-800 border-cyan-400 text-cyan-300 
+            className="pic h-[14vh] w-[20vw] md:h-[17] md:w-[10vw]  rounded-xl absolute left-[-3vw] md:left-[-1vw]       border bg-slate-800 border-cyan-400 text-cyan-300 
       shadow-lg shadow-cyan-400/30"
           >
             <img
@@ -64,7 +64,7 @@ function NameCard({ key, member }) {
         </div>
 
         <div
-          className="details h-[16vh] w-[50vw] md:h-35 md:w-[20vw]  flex flex-col justify-center items-start p-2 rounded-r-xl  border bg-slate-950 border-cyan-400 text-cyan-300 
+          className="details h-[16vh] w-[50vw] md:h-[20vh] md:w-[20vw]  flex flex-col justify-center items-start p-2 rounded-r-xl  border bg-slate-950 border-cyan-400 text-cyan-300 
       shadow-lg shadow-cyan-400/30"
         >
           <p className="md:text-2xl font-semibold">{member.name}</p>
