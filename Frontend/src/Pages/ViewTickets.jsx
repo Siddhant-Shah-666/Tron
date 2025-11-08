@@ -177,8 +177,14 @@ function ViewTickets() {
     fetchticket();
   }, []);
 
-  const dropTicket =async()=>{
+ const dropTicket =async()=>{
     
+    const isConfirmed = window.confirm("Are you sure you want to drop this ticket? This action cannot be undone.");
+
+    if (!isConfirmed) {
+        return;
+    }
+
    const res = await fetch(
       `${import.meta.env.VITE_API_URL}/tickets/dropticket`,
       {
@@ -199,7 +205,6 @@ function ViewTickets() {
     } else toast.error(data.message);
 
   }
-
   return (
     <>
       <div className="w-[100vw] md:w-[80vw]  flex flex-col justify-center items-center text-white p-5 gap-5 ">

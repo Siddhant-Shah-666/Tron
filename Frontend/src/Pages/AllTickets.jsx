@@ -142,6 +142,12 @@ function AllTickets() {
 
    const dropProject =async()=>{
       
+    const isConfirmed = window.confirm("Are you sure you want to drop this Project? This action cannot be undone.");
+
+    if (!isConfirmed) {
+        return;
+    }
+
      const res = await fetch(
         `${import.meta.env.VITE_API_URL}/projects/dropproject`,
         {
