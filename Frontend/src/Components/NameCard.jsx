@@ -51,7 +51,7 @@ function NameCard({ key, member }) {
       >
         <div className="img h-[16vh] w-[20vw] md:h-[20vh] md:w-[10vw]  relative flex justify-center items-center rounded-xl">
           <div
-            className="pic h-[14vh] w-[20vw] md:h-[17] md:w-[10vw]  rounded-xl absolute left-[-3vw] md:left-[-1vw]       border bg-slate-800 border-cyan-400 text-cyan-300 
+            className="pic h-[14vh] w-[20vw] md:h-[18vw] md:w-[10vw]  rounded-xl absolute left-[-3vw] md:left-[-1vw]       border bg-slate-800 border-cyan-400 text-cyan-300 
       shadow-lg shadow-cyan-400/30"
           >
             <img
@@ -101,7 +101,7 @@ function NameCard({ key, member }) {
                   </select>
                   <button
                     type="submit"
-                    className="bg-blue-500 text-white md:p-1 h-[3.5vh] w-[40vw] md:h-[5vh] md:w-[17vw] rounded-xl text-center border bg-cyan-800 border-cyan-400 shadow-lg shadow-cyan-400/30"
+                    className="bg-blue-500 text-white md:p-1 h-[3.5vh] w-[40vw] md:h-[4vh] md:w-[17vw] rounded-xl text-center border bg-cyan-800 border-cyan-400 shadow-lg shadow-cyan-400/30"
                   >
                     Update
                   </button>
