@@ -33,7 +33,7 @@ const matchAllTickets = useMatch("/alltickets/:companyId/:projectId?");
         <Link to="invite"><button className='h-[5vh] w-[25vw] md:h-[6vh] md:w-[10vw] font-bold  text-red-400 hover:text-white rounded hover:bg-red-500 border  border-red-400 shadow-lg shadow-red-400/30 '>Invite+</button></Link>
       )}
 
-      {location.pathname === "/profile" && (
+      {location.pathname === "/profile" && isAdmin && (
         <button onClick={logout} className='h-[5vh] w-[25vw] md:h-[6vh] md:w-[10vw] font-bold  text-red-400 hover:text-white rounded hover:bg-red-500 border  border-red-400 shadow-lg shadow-red-400/30'>Logout</button>
       )}
 
