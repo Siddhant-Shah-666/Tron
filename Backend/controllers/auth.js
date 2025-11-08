@@ -141,7 +141,12 @@ const isloggedin = async (req, res, next) => {
 const logout = async (req, res) => {
   console.log("logout");
   
-  res.clearCookie("token");
+  res.clearCookie("token", {
+    httpOnly: true, 
+    secure: true,
+    sameSite: "None",
+    path: "/",
+  });
   res.status(200).json({ success: true, message: "logged out successfully" })
 }
 
