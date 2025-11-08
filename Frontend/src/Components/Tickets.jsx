@@ -9,7 +9,7 @@ function Tickets({ tickets,mytask = true }) {
       {tickets && tickets?.map((ticket) => (
         <div key={ticket?._id} className={` ${mytask ? "flex md:flex" : "flex md:hidden"} w-[90vw] md:h-[30vh] md:w-[25vw]   rounded-xl font-bold flex flex-col justify-center items-start p-3 md:py-18 md:px-3 gap-1 md:gap-2 m-2  border bg-slate-950/40 backdrop-blur-md  border-cyan-400 text-cyan-300 
       shadow-lg shadow-cyan-400/30 `}>
-          <h2 className='font-bold text-xl md:text-2xl text-white'>Bug : {ticket?.name}</h2>
+          <h2 className='font-bold md:w-full text-xl md:text-xl text-white text-ellipsis'>Bug : {ticket?.name}</h2>
           <h3 className='md:text-l'>Reported by : {ticket?.reportedBy?.name}</h3>
           <div className="w-[80vw] md:w-full bg-red-60 flex gap-5">
             <h3 className='md:text-l'>
