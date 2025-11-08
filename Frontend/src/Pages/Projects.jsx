@@ -33,9 +33,9 @@ function Projects() {
     <div className='h-[100vh] w-[100vw]  md:h-[80vh] md:w-[80vw]  flex flex-col justify-start md:items-center text-white'>
       <div className="stats w-full h-auto md:h-[23vh] md:w-[75vw] px-4 py-6 grid  grid-cols-2 md:grid-cols-4 gap-3 md:gap-5 bg-red-40">
         <StatsCard title="Total Projects" stats={projects?.length} />
-        <StatsCard title="Active Projects" stats={projects?.filter(project=>project.status === "Active").length} />
+        <StatsCard title="Active Projects" stats={projects?.filter(project=>project.status !== "Closed").length} />
            <StatsCard title="High Priority" stats={projects?.filter(project=>project.priority === "High").length} />
-        <StatsCard title="Closed Projects" stats={projects?.filter(project => project.status === "Completed").length} />
+        <StatsCard title="Closed Projects" stats={projects?.filter(project => project.status === "Closed").length} />
         
       </div>
       <div>

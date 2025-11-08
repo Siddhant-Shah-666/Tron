@@ -68,7 +68,7 @@ function NameCard({ key, member }) {
       shadow-lg shadow-cyan-400/30"
         >
           <p className="md:text-2xl font-semibold">{member.name}</p>
-          <p className="text-xs w-[40vw] md:w-[20vw] h-auto overflow-hidden text-ellipsis ">{member.email}</p>
+          <p className="text-xs w-[40vw] md:w-[20vw] h-auto md:h-[2vh] overflow-y-hidden text-ellipsis ">{member.email}</p>
           <div className="role ">
             <form action="" onSubmit={handleSubmit}>
               {!isAdmin && (

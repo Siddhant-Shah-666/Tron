@@ -28,7 +28,7 @@ function Profile() {
             <p className="text-xl w-70">Role : {user?.role}</p>
           </div>
           <div className="bugStatus h-35 w-80 bg- flex flex-col justify-center items-center border bg-slate-950 border-cyan-400 shadow-lg shadow-cyan-400/30">
-            <p className="h-10 text-2xl font-bold">Proformance</p>
+            <p className="h-10 text-2xl font-bold">Performance</p>
             <div className="bugbox  h-25 w-80 bg-red-40 flex justify-center items-center gap-2">
               <div className="box h-20 w-24  flex flex-col justify-center items-center rounded-lg border bg-slate-950 border-cyan-400 shadow-md shadow-cyan-400/30">
                 <p className="text-xl">Assigned</p>

@@ -48,7 +48,7 @@ function Company() {
           <div className="details h-[20vh] w-[60vw] md:h-[40vh]  md:w-[55vw] flex flex-col justify-start items-start p-2 pl-5 md:p-6 rounded-r-xl       border bg-slate-950 border-cyan-400 text-cyan-300 
       shadow-lg shadow-cyan-400/30">
             <p className="text-s md:text-2xl font-bold">{company?.name}</p>
-            <p className="text-xs md:text-md h-[15vh] md:h-[30vh] font-semibold overflow-hidden text-ellipsis ">{company?.desc}</p>
+            <p className="text-xs md:text-md h-[15vh] md:h-[30vh] font-semibold overflow-hidden text-ellipsis pb-2 ">{company?.desc}</p>
             
           </div>
         </div>
