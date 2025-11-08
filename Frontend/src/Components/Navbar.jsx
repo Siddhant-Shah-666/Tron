@@ -44,7 +44,7 @@ function Navbar({ visible, closeNavbar }) {
         </li>
         
           <li>
-            <Link to={`/mytasks/${companyid}`} onClick={closeNavbar} className={`${linkStyles} ${location.pathname === `/mytasks` ? 'bg-cyan-400 text-slate-900 border-cyan-400 text-cyan-300 shadow-lg shadow-cyan-400/30' : 'hover:bg-cyan-400/50'}`}>My Tasks</Link>
+            <Link to={`/mytasks`} onClick={closeNavbar} className={`${linkStyles} ${location.pathname === `/mytasks` ? 'bg-cyan-400 text-slate-900 border-cyan-400 text-cyan-300 shadow-lg shadow-cyan-400/30' : 'hover:bg-cyan-400/50'}`}>My Tasks</Link>
           </li>
         
         <li>
