@@ -2,22 +2,16 @@ import {React,useState,useEffect} from 'react'
 
 import StatsCard from '../Components/Dashboard/StatsCard'
 import Tickets from '../Components/Tickets'
-import { useParams } from 'react-router-dom'
-
 function Mytasks() {
-
-   const { companyId } = useParams();
  
    const [tickets, setTickets] = useState(null);
 
   useEffect(()=>{
-     if (companyId != null) {
-      console.log(companyId, "comm2222222222222");
-
+     
       try {
         console.log("try");
 
-        fetch(`${import.meta.env.VITE_API_URL}/tickets/gettickets/bycom/${companyId}/?filter=user`, {
+        fetch(`${import.meta.env.VITE_API_URL}/tickets/gettickets/byuser`, {
           method: "GET",
           credentials: "include",
         })
@@ -30,8 +24,8 @@ function Mytasks() {
       } catch (err) {
         console.error(err);
       }
-    }
-  },[companyId])
+    
+  },[])
 
 
   return (

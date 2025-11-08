@@ -204,6 +204,16 @@ router.post("/updateticket", isloggedin, async (req, res) => {
   }
 });
 
+router.get('/gettickets/byuser', isloggedin, async (req, res) => {
+    const userId = req.user._id;
+    try {
+        const tickets = await ticketmodel.find({ assignedTo: userId }).populate("reportedBy").populate("assignedTo");
+        res.status(200).json({ tickets, message: "tickets fetched successfully" })
+    } catch (err) {
+        console.error(err);
+    }
+})
+
 router.post("/dropticket",isloggedin,async(req,res)=>{
     const {ticketId} = req.body;
     try{

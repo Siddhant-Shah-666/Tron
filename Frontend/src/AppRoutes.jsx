@@ -37,7 +37,7 @@ function AppRoutes() {
       <Route path='/addticket' element={<AddTicket/>}/>
       <Route path='/addproject' element={<AddProject/>}/>
       <Route path='/addcompany' element={<AddCompany/>}/>
-      <Route path='/mytasks/:companyId' element ={<Mytasks/>}/>
+      <Route path='/mytasks' element ={<Mytasks/>}/>
       
     </Routes>
   )
