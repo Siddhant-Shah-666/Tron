@@ -9,7 +9,7 @@ function ProjectCard({ projects ,companyId}) {
       {projects && projects.map((project, index) => (
         <div key={index} className='md:hidden h-[20vh] w-[90vw] md:h-[30vh] md:w-80 rounded-xl flex flex-col justify-center items-start p-3 md:px-8 gap-1 md:gap-2 m-2 ml-3  border bg-slate-950/40 backdrop-blur-md  border-cyan-400 text-cyan-300 
       shadow-lg shadow-cyan-400/30'>
-          <h2 className='font-bold text-xl md:text-2xl'>Proj. : {project?.name}</h2>
+          <h2 className='font-bold text-xl md:text-2xl text-white'>Proj. : {project?.name}</h2>
           <h3 className='md:text-l'>Manager : {project?.manager?.name}</h3>
           <div className="w-[80vw] md:w-80 bg-red-60 flex gap-5">
             <h3 className='md:text-l'>

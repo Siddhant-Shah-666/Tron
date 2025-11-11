@@ -11,8 +11,8 @@ function Login() {
   const invitetoken = searchparams.get("invitetoken");
 
   const [formData, setFormData] = useState({
-    email: "",
-    password: "",
+    email: "siddhantkumar632@gmail.com",
+    password: "1345",
   });
 
   const handleChange = (e) => {
